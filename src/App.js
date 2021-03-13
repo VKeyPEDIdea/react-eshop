@@ -1,18 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import NavBar from "./components/Navigation/NavBar/NavBar";
+import Catalog from "./containers/Catalog/Catalog";
+import Layout from "./containers/Layout/Layout";
+import Promotion from './containers/Promotion/Promotion';
+import Order from './containers/Order/Order';
 
 function App() {
   return (
     <div className="App">
 			<BrowserRouter>
-				<Route path='/catalog' exact component={NavBar}/>
-				<Route path='/promo' render={() => (
-					<>
-						<NavBar />
-						<h1>Акции</h1>
-					</>
-				)}/>
+				<Layout>
+					<Route path='/catalog' exact component={Catalog}/>
+					<Route path='/promo' component={Promotion}/>
+					<Route path='/order' component={Order}/>
+				</Layout>
 			</BrowserRouter>
     </div>
   );
