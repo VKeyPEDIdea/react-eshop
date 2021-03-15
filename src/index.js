@@ -4,7 +4,7 @@ import './sass/custom.sass';
 import App from './App';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import catalogReducer from './store/reducers/catalog';
+import catalogReducer from './store/catalog/reducer';
 import { Provider } from 'react-redux';
 // import {initSelect} from './plugins/select';
 // import reportWebVitals from './reportWebVitals';

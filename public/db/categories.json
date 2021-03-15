@@ -1,0 +1,77 @@
+{
+	"sushi": {
+		"id": "sushi",
+		"name": "Суши",
+		"parent_id": null
+	},
+	"nigiri": {
+		"id": "nigiri",
+		"name": "Нигири",
+		"parent_id": "sushi"
+	},
+	"gunkany": {
+		"id": "gunkany",
+		"name": "Гунканы",
+		"parent_id": "sushi"
+	},
+	"sashimi": {
+		"id": "sashimi",
+		"name": "Сашими",
+		"parent_id": "sushi"
+	},
+	"abi": {
+		"id": "abi",
+		"name": "Эби",
+		"parent_id": "nigiri"
+	},
+	"syake": {
+		"id": "syake",
+		"name": "Сяке",
+		"parent_id": "nigiri"
+	},
+	"kunsei": {
+		"id": "kunsei",
+		"name": "Кунсей",
+		"parent_id": "nigiri"
+	},
+	"rolls": {
+		"id": "rolls",
+		"name": "Роллы",
+		"parent_id": null
+	},
+	"classic": {
+		"id": "classic",
+		"name": "Классические",
+		"parent_id": "rolls"
+	},
+	"warm": {
+		"id": "warm",
+		"name": "Теплые",
+		"parent_id": "rolls"
+	},
+	"corporative": {
+		"id": "corporative",
+		"name": "Фирменные",
+		"parent_id": "rolls"
+	},
+	"burgers": {
+		"id": "burgers",
+		"name": "Бургеры",
+		"parent_id": null
+	},
+	"chicken": {
+		"id": "chicken",
+		"name": "С курицей",
+		"parent_id": "burgers"
+	},
+	"beef": {
+		"id": "beef",
+		"name": "С говядиной",
+		"parent_id": "burgers"
+	},
+	"cheeze": {
+		"id": "cheeze",
+		"name": "С сыром",
+		"parent_id": "burgers"
+	}
+}

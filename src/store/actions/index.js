@@ -1,3 +1,0 @@
-export {
-	setCategory,
-} from './catalog';

@@ -3,6 +3,11 @@ import React from 'react';
 import classes from './NavigationTree.module.sass';
 import NavigationTreeNode from './NavigationTreeNode/NavigationTreeNode';
 
+// Сделать сервис API для совершения запросов на сервер
+// Парсить с URL список выбранных категорий, взамен sessionRediucer
+// queryString
+// URLSearchParams
+
 const NavigationTree = props => {
 	// const [selectedNodeList, nodeList] = setTree(props.tree);
 	let selectedNodeList = [];
@@ -12,10 +17,11 @@ const NavigationTree = props => {
 		console.log(list);
 
 		Object.values(list)
+			.sort(cat => cat.parent_id !== null)
 			.forEach(node => {
 				let element = <NavigationTreeNode
 					key={node.id}
-					title={node.title}
+					title={node.name}
 					selected={node.selected}
 					click={() => props.click(node.id)}/>;
 			
