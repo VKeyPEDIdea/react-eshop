@@ -22,12 +22,19 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.SET_CATEGORY:
 			const newCategories = updateCategories(state.categories, action.payload.id);
 			return {...state, categories: newCategories};
-		case actionTypes.INIT_CATEGORIES:
-			return state;
 		case actionTypes.FETCH_CATEGORIES_SUCCESS:
-			return {...state, categories: action.payload.categories};
+			return {
+				...state,
+				loading: false,
+				error: false,
+				categories: action.payload.categories
+			};
 		case actionTypes.FETCH_CATEGORIES_FAILED:
-			return {...state, error: action.error};
+			return {
+				...state,
+				loading: false,
+				error: action.error
+			};
 		default:
 			return state;
 	}

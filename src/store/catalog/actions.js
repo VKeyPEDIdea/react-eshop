@@ -1,15 +1,6 @@
 import { api } from '../../services/apiServies';
 import * as actionTypes from '../actionTypes';
 
-export const setCategory = id => {
-	return {
-		type: actionTypes.SET_CATEGORY,
-		payload: {
-			id,
-		},
-	};
-};
-
 export const fetchCategoriesFailed = error => {
 	return {
 		type: actionTypes.FETCH_CATEGORIES_FAILED,

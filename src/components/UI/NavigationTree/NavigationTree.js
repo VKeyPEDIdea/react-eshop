@@ -2,41 +2,41 @@ import React from 'react';
 
 import classes from './NavigationTree.module.sass';
 import NavigationTreeNode from './NavigationTreeNode/NavigationTreeNode';
-
-// Сделать сервис API для совершения запросов на сервер
-// Парсить с URL список выбранных категорий, взамен sessionRediucer
-// queryString
-// URLSearchParams
+import { withRouter } from 'react-router';
+import { getSelected } from '../../../helpers/catalog';
 
 const NavigationTree = props => {
 	// const [selectedNodeList, nodeList] = setTree(props.tree);
 	let selectedNodeList = [];
 	let nodeList = [];
-
+	
 	function setTree(list) {
-		console.log(list);
-
+		// console.log('Categories', list);
+		const selected = getSelected(props.location.search);
+		const current = selected[selected.length - 1];
+		let parent = current ? current : null;
+		const isSelected = (node) => selected.includes(node.id) || node.id === current;
 		Object.values(list)
-			.sort(cat => cat.parent_id !== null)
+			.filter(node => selected.includes(node.id) || node.parent_id === parent)
 			.forEach(node => {
 				let element = <NavigationTreeNode
 					key={node.id}
 					title={node.name}
-					selected={node.selected}
-					click={() => props.click(node.id)}/>;
+					click={() => props.click(node.id)}
+					selected={isSelected(node)}
+				/>;
 			
-			if (node.selected && node.children) {
-				selectedNodeList.push(element);
-				nodeList = [];
-				return setTree(node.children);
-			} else {
-				nodeList.push(element);
+				if (isSelected(node)) {
+					selectedNodeList.push(element);
+					parent = current;
+				} else {
+					nodeList.push(element);
+				};
 			}
-		});
-		// return [selectedNodeList, nodeList];
+		);
 	};
-
-	setTree(props.tree);
+	
+	setTree(props.fullList);
 
 	return (
 		<>
@@ -50,4 +50,4 @@ const NavigationTree = props => {
 	);
 };
 
-export default NavigationTree;
+export default withRouter(NavigationTree);
