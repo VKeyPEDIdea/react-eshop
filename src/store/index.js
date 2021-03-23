@@ -1,4 +1,7 @@
 export {
 	initCategories,
+} from './categories/actions';
+
+export {
 	initProducts,
-} from './catalog/actions';
+} from './products/actions';

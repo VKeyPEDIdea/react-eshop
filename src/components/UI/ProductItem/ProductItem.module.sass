@@ -1,13 +1,13 @@
 @import '../../../sass/utils/_vars';
 @import '../../../sass/utils/_main';
 
-.ProductItem
+.productItem
 	display: block
 	color: $on-body
 
 	&:hover
 
-		.ButtonCart
+		.cartBtnWrap
 			opacity: 1
 
 		.img
@@ -18,6 +18,10 @@
 			transition: $st-trans
 			filter: drop-shadow(16px 13px 0px #000)
 			transform: translate(-5px, -5px)
+
+.cartBtnWrap
+	transition: $st-trans
+	opacity: 0
 
 .title
 	font-family: $primary-font

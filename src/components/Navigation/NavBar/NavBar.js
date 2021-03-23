@@ -2,24 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../UI/Logo/Logo';
 import classes from './NavBar.module.sass';
+import { routes } from '../../../router';
 
 // Выделить в отдельный компонент логотип
 // Вынести в отдельное хранилище список ссылок для навигации
 
-const links = [
-	{
-		ref: '/catalog',
-		name: 'Каталог',
-	},
-	{
-		ref: '/promo',
-		name: 'Акции',
-	}
-];
-
 const NavBar = props => {
 	const getNavBtns = linksList => {
-		return links.map(link => {
+		return linksList.map(link => {
 			return <li key={link.name}>
 				<NavLink
 					to={link.ref}
@@ -29,7 +19,7 @@ const NavBar = props => {
 		});
 	}
 
-	const navBtns = getNavBtns(links);
+	const navBtns = getNavBtns(routes);
 
 	return(
 		<>

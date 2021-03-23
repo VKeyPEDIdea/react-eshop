@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './NavigationTree.module.sass';
 import NavigationTreeNode from './NavigationTreeNode/NavigationTreeNode';
 import { withRouter } from 'react-router';
-import { getSelected } from '../../../helpers/catalog';
+import { location } from '../../../services/locationService';
 
 const NavigationTree = props => {
 	// const [selectedNodeList, nodeList] = setTree(props.tree);
@@ -12,7 +12,7 @@ const NavigationTree = props => {
 	
 	function setTree(list) {
 		// console.log('Categories', list);
-		const selected = getSelected(props.location.search);
+		const selected = location.getSelected(props.location.search);
 		const current = selected[selected.length - 1];
 		let parent = current ? current : null;
 		const isSelected = (node) => selected.includes(node.id) || node.id === current;

@@ -1,7 +1,7 @@
 import Catalog from "./containers/Catalog/Catalog";
 import Promotion from "./containers/Promotion/Promotion";
 
-export const links = [
+export const routes = [
 	{
 		ref: '/catalog',
 		name: 'Каталог',

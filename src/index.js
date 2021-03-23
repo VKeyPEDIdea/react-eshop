@@ -4,7 +4,8 @@ import './sass/custom.sass';
 import App from './App';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import catalogReducer from './store/catalog/reducer';
+import categoriesReducer from './store/categories/reducer';
+import productsReducer from './store/products/reducer';
 import { Provider } from 'react-redux';
 // import {initSelect} from './plugins/select';
 // import reportWebVitals from './reportWebVitals';
@@ -12,7 +13,8 @@ import { Provider } from 'react-redux';
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
-	catalog: catalogReducer,
+	categories: categoriesReducer,
+	products: productsReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

@@ -4,7 +4,7 @@ import NavigationTree from '../../components/UI/NavigationTree/NavigationTree';
 import ProductList from './ProductList/ProductList';
 import { connect } from 'react-redux';
 import * as actions from '../../store';
-import { getDirectory, getSelected } from '../../helpers/catalog';
+import { location } from '../../services/locationService';
 
 const Catalog = props => {
 	const { initCategories, initProducts } = props;
@@ -15,10 +15,10 @@ const Catalog = props => {
 	}, [initCategories, initProducts]);
 
 	const setCategory = (id) => {
-		const selected = getSelected(props.location.search);
+		const selected = location.getSelected(props.location.search);
 
 		if (selected.includes(id)) {
-			const directory = getDirectory(id, selected);
+			const directory = location.getDirectory(id, selected);
 			props.history.replace(`${props.location.pathname}?${directory}`)
 		} else {
 			props.history.push({
@@ -40,8 +40,8 @@ const Catalog = props => {
 
 const mapStateToProps = state => {
 	return {
-		categories: state.catalog.categories,
-		products: state.catalog.products,
+		categories: state.categories.categories,
+		products: state.products.products,
 	};
 };
 
