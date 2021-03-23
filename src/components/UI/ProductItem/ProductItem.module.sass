@@ -1,0 +1,64 @@
+@import '../../../sass/utils/_vars';
+@import '../../../sass/utils/_main';
+
+.ProductItem
+	display: block
+	color: $on-body
+
+	&:hover
+
+		.ButtonCart
+			opacity: 1
+
+		.img
+			border: 2px solid $primary
+			transition: $st-trans
+
+		.imgWrap
+			transition: $st-trans
+			filter: drop-shadow(16px 13px 0px #000)
+			transform: translate(-5px, -5px)
+
+.title
+	font-family: $primary-font
+	font-size: 20px
+	line-height: 24px
+	margin-bottom: 10px
+	color: $on-body
+	display: block
+	transition: $st-trans
+	cursor: pointer
+
+	&:hover
+		transition: $st-trans
+		color: $alt-on-body
+		text-decoration: underline
+
+.description
+	font-size: 14px
+	line-height: 18px
+	max-height: 18px
+	overflow: hidden
+	margin-bottom: 10px
+	color: $alt-on-body
+
+.price
+	font-size: 24px
+	line-height: 28px
+
+.img
+	transition: $st-trans
+	border: 2px solid $grey
+	border-radius: 8px
+	// max-width: 280px
+	max-width: 100%
+	display: block
+	height: auto
+	width: 100%
+	margin-bottom: 30px
+	box-sizing: border-box
+
+	&Wrap
+		display: block
+		position: relative
+		transition: $st-trans

@@ -1,35 +1,47 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import Logo from '../../UI/Logo/Logo';
 import classes from './NavBar.module.sass';
 
-const navBar = props => {
+// Выделить в отдельный компонент логотип
+// Вынести в отдельное хранилище список ссылок для навигации
+
+const links = [
+	{
+		ref: '/catalog',
+		name: 'Каталог',
+	},
+	{
+		ref: '/promo',
+		name: 'Акции',
+	}
+];
+
+const NavBar = props => {
+	const getNavBtns = linksList => {
+		return links.map(link => {
+			return <li key={link.name}>
+				<NavLink
+					to={link.ref}
+					className={classes.btnNav}
+					activeClassName={[classes.btnNav, classes.active].join(' ')}>{link.name}</NavLink>
+			</li>
+		});
+	}
+
+	const navBtns = getNavBtns(links);
+
 	return(
 		<>
 			<header className={classes.NavBar}>
-
-				<div className={classes.logo}>
-					<img src="Logo.svg" alt="logo"/>
-				</div>
-
-				<nav className="nav nav-header-desktop">
-					<ul>
-						<li>
-							<NavLink
-								to='/catalog'
-								className={classes.btnNav}
-								activeClassName={[classes.btnNav, classes.active].join(' ')}>Каталог</NavLink>
-						</li>
-						<li>
-							<NavLink
-								to='/promo'
-								className={classes.btnNav}
-								activeClassName={[classes.btnNav, classes.active].join(' ')}>Акции</NavLink>
-							</li>
+				<Logo />
+				<nav>
+					<ul className={classes.navList}>
+						{navBtns}
 					</ul>
 				</nav>
 
-				<div className="header-func-box">
+				<div className={classes.Actions}>
 
 					{/* <div className="cart">
 						<i className="cart-icon material-icons">shopping_cart</i>
@@ -58,4 +70,4 @@ const navBar = props => {
 	);
 }
 
-export default navBar;
+export default NavBar;

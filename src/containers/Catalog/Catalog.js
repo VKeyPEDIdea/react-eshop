@@ -7,11 +7,12 @@ import * as actions from '../../store';
 import { getDirectory, getSelected } from '../../helpers/catalog';
 
 const Catalog = props => {
-	const { initCategories } = props;
+	const { initCategories, initProducts } = props;
 
 	useEffect(() => {
 		initCategories();
-	}, [initCategories]);
+		initProducts();
+	}, [initCategories, initProducts]);
 
 	const setCategory = (id) => {
 		const selected = getSelected(props.location.search);
@@ -31,7 +32,8 @@ const Catalog = props => {
 			<NavigationTree
 				fullList={props.categories}
 				click={setCategory}/>
-			<ProductList />
+			<ProductList
+				productList={props.products}/>
 		</div>
 	);
 }
@@ -39,12 +41,14 @@ const Catalog = props => {
 const mapStateToProps = state => {
 	return {
 		categories: state.catalog.categories,
+		products: state.catalog.products,
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
 		initCategories: () => dispatch(actions.initCategories()),
+		initProducts: () => dispatch(actions.initProducts()),
 	};
 };
 

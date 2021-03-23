@@ -15,6 +15,16 @@ export class Api {
 			return Promise.reject(error);
 		}
 	}
+
+	async getProducts() {
+		try {
+			const response = await axios.get(`${this.url}db/products.json`);
+			return response.data;
+		} catch (error) {
+			console.warn(error);
+			return Promise.reject(error);
+		}
+	}
 }
 
 export const api = new Api(apiConfig);

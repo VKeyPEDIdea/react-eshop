@@ -1,0 +1,70 @@
+@import '../../../sass/utils/_vars';
+	
+.Button
+	display: inline-block
+	line-height: 20px
+	font-size: 15px
+	padding: 10px 20px
+	border-radius: 4px
+	cursor: pointer
+	transition: $st-trans
+	white-space: nowrap
+
+	&--nav
+		background-color: $body
+		color: $alt-on-body
+
+		&:hover
+			background-color: $body-hover
+			color: $on-body
+
+	&--icon
+		background-color: $body
+		color: $alt-on-body
+		font-family: icomoon
+		padding: 8px
+		line-height: 24px
+		font-size: 24px
+
+		&:hover
+			background-color: $body-hover
+			color: $on-body
+
+	&Cart
+		// opacity: 0
+		position: absolute
+		bottom: -40px
+		left: 50%
+		transform: translate(-50%, -50%)
+		border-radius: 20px
+		padding: 8px 35px
+		background: linear-gradient(0deg, $primary, $primary-light)
+		box-shadow: 0px 3px 12px 0px rgba($primary-light, 0.35)
+		color: $primary-dark
+		font-size: 15px
+		line-height: 20px
+		text-transform: uppercase
+		font-weight: 600
+		box-sizing: border-box
+		border: 2px solid $primary
+
+		&:hover
+			background: linear-gradient(0deg, $primary, $primary-hover)
+
+		&:focus
+			background: linear-gradient(0deg, $primary, $primary-hover)
+
+			&::before
+				opacity: 0
+
+		&::before
+			transition: $st-trans
+			content: ""
+			width: 90%
+			position: absolute
+			height: 20px
+			border-radius: 10px
+			background: linear-gradient(0deg, rgba($white, 0), rgba($white, .70))
+			transform: translate(-50%, -50%)
+			bottom: 5px
+			left: 50%

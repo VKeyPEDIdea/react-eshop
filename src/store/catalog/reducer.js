@@ -3,6 +3,7 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
 	categories: {},
+	products: {},
 	error: null,
 	loading: true,
 };
@@ -30,6 +31,19 @@ const reducer = (state = initialState, action) => {
 				categories: action.payload.categories
 			};
 		case actionTypes.FETCH_CATEGORIES_FAILED:
+			return {
+				...state,
+				loading: false,
+				error: action.error
+			};
+		case actionTypes.FETCH_PRODUCTS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				error: false,
+				products: action.payload.products
+			}
+		case actionTypes.FETCH_PRODUCTS_FAILED:
 			return {
 				...state,
 				loading: false,

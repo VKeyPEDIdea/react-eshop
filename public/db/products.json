@@ -1,0 +1,35 @@
+{
+	"hiyashi": {
+		"id": "hiyashi",
+		"name": "Хияши",
+		"description": "Салат «чука», ореховый соус",
+		"price": 400,
+		"img": "./img/catalog/2_hiyasi.png",
+		"rating": "4",
+		"categoryId": "gunkany",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514751"]
+	},
+	"syake": {
+		"id": "syake",
+		"name": "Сяке когасэ",
+		"description": "Опаленный лосось",
+		"price": 425,
+		"img": "./img/catalog/1_syake_cogase.png",
+		"rating": "5",
+		"categoryId": "nigiri",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514752"]
+	},
+	"ikura": {
+		"id": "ikura",
+		"name": "Икура",
+		"description": "Красная икра",
+		"price": 600,
+		"img": "./img/catalog/3_ikura.png",
+		"rating": "5",
+		"categoryId": "gunkany",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514753"]
+	}
+}
