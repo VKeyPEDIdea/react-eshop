@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '../Button/Button';
 import classes from './ProductItem.module.sass';
 
-// Сделать компонент кнопки
 // Сделать компонент Counter
 
 const ProductItem = props => {
