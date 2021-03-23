@@ -1,20 +1,24 @@
 class Location {
-	getDirectory(id, list) {
+	getDirectory(currentLocation, id) {
 		let path = '';
+		let list = currentLocation.slice(1).split('/');
+		
 		for (let name of list) {
 			if (name !== id) {
-				path += name + '-';
+				// console.log(name, id);
+				path += '/' + name;
 			}	else {
-			break;
+				break;
 			}
 		}	
+		// console.log(path);
 		return path;
 	}
 	
 	getSelected(location) {
 		return location.slice(1)
-		.split('-')
-		.filter(cat => cat !== '');
+			.split('/')
+			.filter(cat => cat !== '' && cat !== 'catalog');
 	}
 }
 

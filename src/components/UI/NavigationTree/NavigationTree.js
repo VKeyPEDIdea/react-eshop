@@ -9,6 +9,7 @@ import * as actions from '../../../store/';
 
 const NavigationTree = props => {
 	const { initCategories, categories } = props;
+	const [ selectedNodeList, nodeList ] = setTree(categories);
 
 	useEffect(() => {
 		initCategories();
@@ -17,7 +18,7 @@ const NavigationTree = props => {
 	function setTree(list) {
 		let selectedNodes = [];
 		let normalNodes = [];
-		const selected = location.getSelected(props.location.search);
+		const selected = location.getSelected(props.location.pathname);
 		const current = selected[selected.length - 1];
 		let parent = current ? current : null;
 		const isSelected = (node) => selected.includes(node.id) || node.id === current;
@@ -26,8 +27,10 @@ const NavigationTree = props => {
 			.forEach(node => {
 				let element = <NavigationTreeNode
 					key={node.id}
+					id={node.id}
 					title={node.name}
-					click={() => props.click(node.id)}
+					rootPath={props.location.pathname}
+					// click={() => setCategory(node.id)}
 					selected={isSelected(node)}
 				/>;
 			
@@ -43,11 +46,9 @@ const NavigationTree = props => {
 		return [ selectedNodes, normalNodes ];
 	};
 	
-	const [ selectedNodeList, nodeList ] = setTree(categories);
-	
 	return (
 		<>
-			<nav className={classes.NavigationTree}>
+			<nav className={classes.navigationTree}>
 				<ul>
 					{selectedNodeList}
 					{nodeList}

@@ -1,18 +1,25 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Catalog from "./containers/Catalog/Catalog.js";
 import Layout from "./containers/Layout/Layout";
-import Promotion from './containers/Promotion/Promotion';
-import Order from './containers/Order/Order';
+import { routes } from './router';
 
 function App() {
+	const routeList = getRoutes(routes);
+
+	function getRoutes(config) {
+		return config.map(route => {
+			return <Route
+				key={route.ref}
+				path={route.ref}
+				component={route.component}/>;
+		});
+	}
+
   return (
     <div className="App">
 			<BrowserRouter>
 				<Layout>
-					<Route path='/catalog' component={Catalog}/>
-					<Route path='/promo' component={Promotion}/>
-					<Route path='/order' component={Order}/>
+					{routeList}
 				</Layout>
 			</BrowserRouter>
     </div>

@@ -5,7 +5,7 @@ import classes from './ProductList.module.sass';
 import * as actions from '../../../store/';
 
 const listStyles = [
-	classes.ProductList,
+	classes.productList,
 	classes['row3'],
 	classes['row3-sm'],
 	classes['row2-xs'],

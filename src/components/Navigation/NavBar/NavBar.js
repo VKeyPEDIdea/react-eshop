@@ -23,7 +23,7 @@ const NavBar = props => {
 
 	return(
 		<>
-			<header className={classes.NavBar}>
+			<header className={classes.navBar}>
 				<Logo />
 				<nav>
 					<ul className={classes.navList}>
@@ -31,7 +31,7 @@ const NavBar = props => {
 					</ul>
 				</nav>
 
-				<div className={classes.Actions}>
+				<div className={classes.actions}>
 
 					{/* <div className="cart">
 						<i className="cart-icon material-icons">shopping_cart</i>

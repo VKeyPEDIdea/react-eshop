@@ -1,6 +1,6 @@
 import React from 'react';
 
-const order = props => {
+const Order = props => {
 	return(
 		<>
 			<h2>Корзина</h2>
@@ -8,4 +8,4 @@ const order = props => {
 	);
 }
 
-export default order;
+export default Order;
