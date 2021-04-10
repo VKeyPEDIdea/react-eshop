@@ -6,6 +6,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import categoriesReducer from './store/categories/reducer';
 import productsReducer from './store/products/reducer';
+import orderReducer from './store/order/reducer';
 import { Provider } from 'react-redux';
 // import {initSelect} from './plugins/select';
 // import reportWebVitals from './reportWebVitals';
@@ -15,6 +16,7 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 const rootReducer = combineReducers({
 	categories: categoriesReducer,
 	products: productsReducer,
+	order: orderReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

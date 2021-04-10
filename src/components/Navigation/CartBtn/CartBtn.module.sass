@@ -1,0 +1,52 @@
+@import '../../../sass/utils/_vars';
+.cartBtn
+	position: relative
+	display: flex
+	margin-left: 8px
+	padding: 8px 16px
+	transition: $st-trans
+	color: $alt-on-body
+
+	&::before
+		opacity: 0
+		position: absolute
+		content: ''
+		width: 100%
+		transform: translateX(-50%)
+		left: 50%
+		bottom: 0px
+		border-radius: 4px 4px 0 0
+		height: 4px
+		background-color: $primary
+	
+	&:hover
+		cursor: pointer
+		color: $on-body
+		background-color: rgba($dark-hover, .2)
+
+	&:focus
+		color: $body-hover
+
+	&.active
+		background-color: rgba($primary, .1)
+		color: $primary
+
+		&::before
+			opacity: 1
+
+.icon
+	font-size: 24px
+	line-height: 1.5
+
+.info
+	margin-left: 8px
+
+.price
+	font-size: 18px
+	line-height: 22px
+	margin: 0
+
+.amount
+	font-size: 13px
+	line-height: 16px
+	margin: 0

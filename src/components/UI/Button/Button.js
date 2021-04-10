@@ -6,6 +6,7 @@ const Button = props => {
 	return(
 		<div
 			className={styles}
+			onClick={props.click}
 			data-id={props.id}>{props.name}</div>
 	);
 }

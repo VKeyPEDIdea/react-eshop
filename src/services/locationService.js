@@ -5,13 +5,11 @@ class Location {
 		
 		for (let name of list) {
 			if (name !== id) {
-				// console.log(name, id);
 				path += '/' + name;
 			}	else {
 				break;
 			}
 		}	
-		// console.log(path);
 		return path;
 	}
 	

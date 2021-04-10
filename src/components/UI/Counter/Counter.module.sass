@@ -1,5 +1,7 @@
+@import '../../../sass/utils/_vars';
 .counter
 	position: absolute
+	display: flex
 	align-items: center
 	justify-content: center
 	text-align: center
@@ -9,7 +11,6 @@
 	line-height: 24px
 	font-size: 15px
 	border-radius: 4px
-	cursor: pointer
 	transition: $st-trans
 	white-space: nowrap
 	bottom: -40px
@@ -29,9 +30,6 @@
 	&:focus
 		background: linear-gradient(0deg, $primary, $primary-hover)
 
-		&::before
-			opacity: 0
-
 	&::before
 		transition: $st-trans
 		content: ""
@@ -41,16 +39,19 @@
 		border-radius: 10px
 		background: linear-gradient(0deg, rgba($white, 0), rgba($white, .70))
 		transform: translate(-50%, -50%)
-		bottom: 7px
+		bottom: 5px
 		left: 50%
 		pointer-events: none
-
-.minus, .count, .plus
-	display: inline-block
 
 .count
 	margin: 0 20px
 
 .minus, .plus
-	padding: 6px 0
+	cursor: pointer
 	font-size: 24px
+	height: 24px
+	padding: 6px
+	border-radius: 4px
+
+	&:hover
+		background-color: $primary-hover

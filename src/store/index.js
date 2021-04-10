@@ -5,3 +5,8 @@ export {
 export {
 	initProducts,
 } from './products/actions';
+
+export {
+	addProductToBasket,
+	removeProductFromBasket,
+} from './order/actions';

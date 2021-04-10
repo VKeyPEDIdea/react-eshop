@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Layout from "./containers/Layout/Layout";
-import { routes } from './router';
+import { typicalRoutes, singularRoutes } from './router';
 
 function App() {
-	const routeList = getRoutes(routes);
+	const routeList = getRoutes(typicalRoutes);
+	const singularRouteList = getRoutes(singularRoutes);
 
 	function getRoutes(config) {
 		return config.map(route => {
@@ -20,6 +21,7 @@ function App() {
 			<BrowserRouter>
 				<Layout>
 					{routeList}
+					{singularRouteList}
 				</Layout>
 			</BrowserRouter>
     </div>
