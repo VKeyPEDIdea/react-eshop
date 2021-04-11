@@ -25,14 +25,18 @@ const reducer = (state = initialState, action) => {
 
 			return { ...updatedState, basket: updatedBasket };
 		case actionTypes.REMOVED_PRODUCT_FROM_BASKET:
-			if (basketProductIds.includes(action.payload.productId)) {
-				updatedBasket.forEach(product => {
-					if (product[action.payload.productId] === 1) {
-						updatedBasket = updatedBasket.filter(currentProduct => currentProduct !== product);
-					} else {
-						product[action.payload.productId] -= 1;
-					};
-				});
+			let currentProduct = updatedBasket.find(basketProduct => basketProduct[action.payload.productId]);
+			if (currentProduct) {
+				if (currentProduct[action.payload.productId] !== 1) {
+					currentProduct[action.payload.productId] -= 1;
+				} else if (currentProduct[action.payload.productId]) {
+					updatedBasket = updatedBasket.filter(basketProduct => {
+						console.log('basketProduct', basketProduct);
+						console.log('product', currentProduct);
+						console.log(basketProduct === currentProduct);
+						return basketProduct !== currentProduct;
+					});
+				};
 			}
 
 			return { ...updatedState, basket: updatedBasket };
