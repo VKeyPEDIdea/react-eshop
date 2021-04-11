@@ -18,6 +18,10 @@ class Location {
 			.split('/')
 			.filter(cat => cat !== '' && cat !== 'catalog');
 	}
+
+	getCurrentCategory(location) {
+		return this.getSelected(location).pop() || null;
+	}
 }
 
 export const location = new Location();

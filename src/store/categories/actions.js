@@ -4,7 +4,7 @@ import * as actionTypes from '../actionTypes';
 export const initCategories = () => {
 	return dispatch => {
 		api.getCategories()
-			.then(data => {dispatch(fetchCategoriesSuccess(data))})
+			.then(data => dispatch(fetchCategoriesSuccess(data)))
 			.catch(error => dispatch(fetchCategoriesFailed(error)));
 	};
 };

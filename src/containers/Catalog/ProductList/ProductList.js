@@ -1,8 +1,10 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import ProductItem from '../../../components/UI/ProductItem/ProductItem';
+import { location } from '../../../services/locationService';
 import classes from './ProductList.module.sass';
 import * as actions from '../../../store/';
+import { withRouter } from 'react-router';
 
 const listStyles = [
 	classes.productList,
@@ -18,9 +20,10 @@ const ProductList = props => {
 		addProductToBasket,
 		removeProductFromBasket,
 		basket,
+		location: routerLocation,
 	} = props;
 
-	let list = useRef();
+	const selectedCategory = location.getCurrentCategory(routerLocation.pathname) || '';
 	
 	const checkIsAdded = useCallback((id, basket) => {
 		let result = false;
@@ -44,8 +47,9 @@ const ProductList = props => {
 		return count;
 	};
 	
-	const getList = useCallback((productsList, basket) => {
-		return Object.values(productsList)
+	const getList = useCallback((productsList, basket, selectedCategory) => {
+		const filteredList = Object.values(productsList)
+			.filter(product => product.categoryId === selectedCategory)
 			.map(product => {
 				return <ProductItem
 					key={product.id}
@@ -59,21 +63,18 @@ const ProductList = props => {
 					addProductHandler={addProductToBasket}
 					removeProductHandler={removeProductFromBasket}/>
 		});
+		return filteredList;
 	}, [addProductToBasket, removeProductFromBasket, checkIsAdded]);
 	
-	list.current = getList(products, basket);
+	const list = getList(products, basket, selectedCategory);
 
 	useEffect(() => {
 		initProducts();
 	}, [initProducts]);
 
-	useEffect(() => {
-		list.current = getList(products, basket);
-	}, [products, basket, getList, checkIsAdded]);
-
 	return(
 		<div className={listStyles}>
-			{list.current}
+			{list}
 		</div>
 	);
 }
@@ -93,4 +94,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductList));

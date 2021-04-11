@@ -30,7 +30,6 @@ const NavigationTree = props => {
 					id={node.id}
 					title={node.name}
 					rootPath={props.location.pathname}
-					// click={() => setCategory(node.id)}
 					selected={isSelected(node)}
 				/>;
 			

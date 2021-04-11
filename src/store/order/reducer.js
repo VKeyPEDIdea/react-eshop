@@ -31,9 +31,6 @@ const reducer = (state = initialState, action) => {
 					currentProduct[action.payload.productId] -= 1;
 				} else if (currentProduct[action.payload.productId]) {
 					updatedBasket = updatedBasket.filter(basketProduct => {
-						console.log('basketProduct', basketProduct);
-						console.log('product', currentProduct);
-						console.log(basketProduct === currentProduct);
 						return basketProduct !== currentProduct;
 					});
 				};
