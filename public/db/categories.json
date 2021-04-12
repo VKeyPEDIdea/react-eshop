@@ -14,9 +14,9 @@
 		"name": "Гунканы",
 		"parent_id": "sushi"
 	},
-	"sashimi": {
-		"id": "sashimi",
-		"name": "Сашими",
+	"temaki": {
+		"id": "temaki",
+		"name": "Темаки",
 		"parent_id": "sushi"
 	},
 	"abi": {
@@ -27,11 +27,6 @@
 	"syake": {
 		"id": "syake",
 		"name": "Сяке",
-		"parent_id": "nigiri"
-	},
-	"kunsei": {
-		"id": "kunsei",
-		"name": "Кунсей",
 		"parent_id": "nigiri"
 	},
 	"rolls": {
@@ -49,29 +44,24 @@
 		"name": "Теплые",
 		"parent_id": "rolls"
 	},
-	"corporative": {
-		"id": "corporative",
-		"name": "Фирменные",
-		"parent_id": "rolls"
-	},
-	"burgers": {
-		"id": "burgers",
-		"name": "Бургеры",
+	"soups": {
+		"id": "soups",
+		"name": "Супы",
 		"parent_id": null
 	},
 	"chicken": {
 		"id": "chicken",
 		"name": "С курицей",
-		"parent_id": "burgers"
+		"parent_id": "soups"
 	},
 	"beef": {
 		"id": "beef",
 		"name": "С говядиной",
-		"parent_id": "burgers"
+		"parent_id": "soups"
 	},
-	"cheeze": {
-		"id": "cheeze",
-		"name": "С сыром",
-		"parent_id": "burgers"
+	"fish": {
+		"id": "fish",
+		"name": "С рыбой",
+		"parent_id": "soups"
 	}
 }

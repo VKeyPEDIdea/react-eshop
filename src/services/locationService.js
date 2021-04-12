@@ -20,7 +20,7 @@ class Location {
 	}
 
 	getCurrentCategory(location) {
-		return this.getSelected(location).pop() || null;
+		return this.getSelected(location).pop() || '';
 	}
 }
 

@@ -1,4 +1,15 @@
 {
+	"syake_cogase": {
+		"id": "syake",
+		"name": "Сяке когасэ",
+		"description": "Опаленный лосось",
+		"price": 425,
+		"img": "/img/catalog/1_syake_cogase.png",
+		"rating": "5",
+		"categoryId": "syake",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514751"]
+	},
 	"hiyashi": {
 		"id": "hiyashi",
 		"name": "Хияши",
@@ -7,17 +18,6 @@
 		"img": "/img/catalog/2_hiyasi.png",
 		"rating": "4",
 		"categoryId": "gunkany",
-		"brandId": "Fresh Fish",
-		"comments": ["id7514751"]
-	},
-	"syake": {
-		"id": "syake",
-		"name": "Сяке когасэ",
-		"description": "Опаленный лосось",
-		"price": 425,
-		"img": "/img/catalog/1_syake_cogase.png",
-		"rating": "5",
-		"categoryId": "nigiri",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514752"]
 	},
@@ -31,5 +31,280 @@
 		"categoryId": "gunkany",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514753"]
+	},
+	"carui_cani": {
+		"id": "carui_cani",
+		"name": "Острый Краб спайси",
+		"description": "Краб острый, красная икра",
+		"price": 650,
+		"img": "/img/catalog/4_carui_cani.png",
+		"rating": "5",
+		"categoryId": "gunkany",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514754"]
+	},
+	"spaysi_syake": {
+		"id": "spaysi_syake",
+		"name": "Спайси сякэ",
+		"description": "Лосось острый",
+		"price": 600,
+		"img": "/img/catalog/5_spaysi_syake.png",
+		"rating": "5",
+		"categoryId": "gunkany",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514755"]
+	},
+	"abi": {
+		"id": "spaysi_syake",
+		"name": "Эби",
+		"description": "Креветка",
+		"price": 600,
+		"img": "/img/catalog/6_abi.png",
+		"rating": "5",
+		"categoryId": "abi",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514756"]
+	},
+	"syake": {
+		"id": "syake",
+		"name": "Сяке",
+		"description": "Лосось суши",
+		"price": 600,
+		"img": "/img/catalog/7_syake.png",
+		"rating": "5",
+		"categoryId": "syake",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514757"]
+	},
+	"syake_cunsei": {
+		"id": "8_syake_cunsei",
+		"name": "Сяке кунсей",
+		"description": "Лосось копченый",
+		"price": 600,
+		"img": "/img/catalog/8_syake_cunsei.png",
+		"rating": "5",
+		"categoryId": "syake",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514757"]
+	},
+	"maguro": {
+		"id": "maguro",
+		"name": "Магуро",
+		"description": "Тунец",
+		"price": 600,
+		"img": "/img/catalog/9_maguro.png",
+		"rating": "5",
+		"categoryId": "syake",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514759"]
+	},
+	"temaki_maguro": {
+		"id": "temaki_maguro",
+		"name": "Темаки с тунцом",
+		"description": "Тунец, соус «Свит юдзу», зелень",
+		"price": 1300,
+		"img": "/img/catalog/10_temaki_maguro.png",
+		"rating": "5",
+		"categoryId": "temaki",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514760"]
+	},
+	"temaki_hotate": {
+		"id": "temaki_hotate",
+		"name": "Темаки с гребешком",
+		"description": "Гребешок, соус «Свит юдзу», зелень",
+		"price": 1300,
+		"img": "/img/catalog/11_temaki_hotate.png",
+		"rating": "5",
+		"categoryId": "temaki",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514761"]
+	},
+	"temaki_syake": {
+		"id": "temaki_syake",
+		"name": "Темаки с лососем-юдзу",
+		"description": "Лосось, соус «Свит юдзу», зелень",
+		"price": 1300,
+		"img": "/img/catalog/12_temaki_syake.png",
+		"rating": "5",
+		"categoryId": "temaki",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514762"]
+	},
+	"temaki_abi": {
+		"id": "temaki_abi",
+		"name": "Темаки с креветкой",
+		"description": "Креветка, манго, авокадо, соус «Спайси манго»",
+		"price": 1300,
+		"img": "/img/catalog/13_temaki_abi.png",
+		"rating": "5",
+		"categoryId": "temaki",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514763"]
+	},
+	"philadelphiya_rolls": {
+		"id": "philadelphiya_rolls",
+		"name": "Филадельфия",
+		"description": "Лосось, огурец, авокадо, кунжут, сыр, зеленый лук, 6 шт.",
+		"price": 2900,
+		"img": "/img/catalog/14_philadelphiya_rolls.png",
+		"rating": "5",
+		"categoryId": "classic",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514764"]
+	},
+	"caliphornia_rolls": {
+		"id": "caliphornia_rolls",
+		"name": "Калифорния",
+		"description": "Краб, авокадо, огурец, тобико, 6 шт.",
+		"price": 2700,
+		"img": "/img/catalog/15_caliphornia_rolls.png",
+		"rating": "5",
+		"categoryId": "classic",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514765"]
+	},
+	"kappa_roll": {
+		"id": "kappa_roll",
+		"name": "Каппа ролл",
+		"description": "С огурцом",
+		"price": 900,
+		"img": "/img/catalog/16_kappa_roll.png",
+		"rating": "5",
+		"categoryId": "classic",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514766"]
+	},
+	"syake_roll": {
+		"id": "syake_roll",
+		"name": "Сякэ ролл",
+		"description": "С лососем",
+		"price": 900,
+		"img": "/img/catalog/17_syake_roll.png",
+		"rating": "5",
+		"categoryId": "classic",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514767"]
+	},
+	"syake_tempura_roll": {
+		"id": "syake_tempura_roll",
+		"name": "Сякэ темпура",
+		"description": "Лосось, креветка темпура, огурец, тобико, 6 шт.",
+		"price": 2900,
+		"img": "/img/catalog/18_syake_tempura_roll.png",
+		"rating": "5",
+		"categoryId": "classic",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514768"]
+	},
+	"maguro_roll": {
+		"id": "maguro_roll",
+		"name": "Тэкка ролл",
+		"description": "С тунцом",
+		"price": 900,
+		"img": "/img/catalog/19_maguro_roll.png",
+		"rating": "5",
+		"categoryId": "classic",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514769"]
+	},
+	"caliphorniya_hot_rolls": {
+		"id": "caliphorniya_hot_rolls",
+		"name": "Калифорния хот",
+		"description": "Микс краба, авокадо, огурец, тобико, 6 шт.",
+		"price": 2700,
+		"img": "/img/catalog/20_caliphorniya_hot_rolls.png",
+		"rating": "5",
+		"categoryId": "warm",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514770"]
+	},
+	"kaguvase_syake_hot_roll": {
+		"id": "kaguvase_syake_hot_roll",
+		"name": "Кагувасэ",
+		"description": "Теплый лосось",
+		"price": 2300,
+		"img": "/img/catalog/21_kaguvase_syake_hot_roll.png",
+		"rating": "5",
+		"categoryId": "warm",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514771"]
+	},
+	"kani_hot_roll": {
+		"id": "kani_hot_roll",
+		"name": "Кани хотто",
+		"description": "Краб-микс, авокадо, тобико, зеленый лук, 6 шт.",
+		"price": 2300,
+		"img": "/img/catalog/22_kani_hot_roll.png",
+		"rating": "5",
+		"categoryId": "warm",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514772"]
+	},
+	"soup_beef_сhile": {
+		"id": "soup_beef_сhile",
+		"name": "Гюнику чили",
+		"description": "Говядина, пшеничная лапша, шампиньоны, перец чили, перепелиное яйцо",
+		"price": 2100,
+		"img": "/img/catalog/23_soup_beef_сhile.png",
+		"rating": "5",
+		"categoryId": "beef",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514773"]
+	},
+	"asian_soup_beef": {
+		"id": "asian_soup_beef",
+		"name": "Азиатский суп с говядиной",
+		"description": "Говядина, шпинат, омлет, нори, кинза, кунжут, яичная лапша",
+		"price": 2300,
+		"img": "/img/catalog/24_asian_soup_beef.png",
+		"rating": "5",
+		"categoryId": "beef",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514774"]
+	},
+	"ramen_chicken": {
+		"id": "ramen_chicken",
+		"name": "Рамен с курицей",
+		"description": "Курица, яичная лапша, грибы эноки, пак-чой.",
+		"price": 2300,
+		"img": "/img/catalog/25_ramen_chicken.png",
+		"rating": "5",
+		"categoryId": "chicken",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514775"]
+	},
+	"soup_chicken_cheese": {
+		"id": "soup_chicken_cheese",
+		"name": "Чикен чиз",
+		"description": "Копченая курица, сыр, конина, томаты черри, шампиньоны",
+		"price": 2300,
+		"img": "/img/catalog/26_soup_chicken_cheese.png",
+		"rating": "5",
+		"categoryId": "chicken",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514776"]
+	},
+	"soup_calmar_hotate": {
+		"id": "soup_calmar_hotate",
+		"name": "Тануки-ям",
+		"description": "Креветки, мидии, кальмар, гребешок, кокосовое молоко, шампиньоны, лимонник",
+		"price": 2600,
+		"img": "/img/catalog/27_soup_calmar_hotate.png",
+		"rating": "5",
+		"categoryId": "fish",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514777"]
+	},
+	"soup_unagi": {
+		"id": "soup_unagi",
+		"name": "Унаги сиру",
+		"description": "Угорь, стеклянная лапша, шампиньоны, яйцо",
+		"price": 2400,
+		"img": "/img/catalog/28_soup_unagi.png",
+		"rating": "5",
+		"categoryId": "fish",
+		"brandId": "Fresh Fish",
+		"comments": ["id7514778"]
 	}
 }
