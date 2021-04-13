@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import BasketProductItem from '../../components/UI/BasketProductItem/BasketProductItem';
 import { getBasketProductCount } from '../../orderHelpers';
 import * as actions from '../../store/';
+import Input from '../../components/UI/Input/Input';
 
 const Order = props => {
 	const {
@@ -12,6 +13,39 @@ const Order = props => {
 		addProductToBasket,
 		removeProductFromBasket
 	} = props;
+
+	const config = [
+		{
+			type: 'text',
+			label: 'Имя',
+			id: 'name'
+		},
+		{
+			type: 'text',
+			label: 'Телефон',
+			id: 'phone'
+		},
+		{
+			type: 'select',
+			label: 'Способ доставки',
+			optionList: ['Курьером', 'Самовывоз'],
+		},
+		{
+			type: 'select',
+			label: 'Адрес',
+			optionList: ['Домашний', 'Рабочий'],
+		},
+	];
+
+	const getOrderForm = formConfig => {
+		return formConfig.map(element => {
+			return <Input
+				type={element.type}
+				label={element.label}
+				id={element.id}
+				optionList={element.optionList}/>
+		});
+	};
 
 	const getProductList = basketList => {
 		return basketList.map(product => {
@@ -36,6 +70,10 @@ const Order = props => {
 				<div>
 					<h4>Товары: {getBasketProductCount(basket)}</h4>
 					{getProductList(basket)}
+				</div>
+				<div>
+					<h4>Доставка</h4>
+					{getOrderForm(config)}
 				</div>
 			</div>
 		</>
