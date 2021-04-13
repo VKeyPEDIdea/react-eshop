@@ -11,6 +11,7 @@ const ProductItem = props => {
 		imgPath,
 		title,
 		about,
+		count,
 		price,
 		isAdded,
 	} = props;
@@ -20,6 +21,12 @@ const ProductItem = props => {
 		if (isAdded) imgStyles.push(classes.imgAdded);
 		return imgStyles.join(' ');
 	}
+
+	function getCartBtnWrapStyles() {
+		let btnStyles = [classes.cartBtnWrap];
+		if (isAdded) btnStyles.push(classes.cartBtnWrapShow);
+		return btnStyles.join(' ');
+	}
 	
 	return(
 		<div className={classes.productItem}>
@@ -28,17 +35,17 @@ const ProductItem = props => {
 					src={imgPath}
 					alt="alt"
 					className={getImgWrapStyles()}/>
-				<div className={classes.cartBtnWrap}>
+				<div className={getCartBtnWrapStyles()}>
+					{isAdded
+						? <Counter
+								count={count}
+								remove={() => removeProductHandler(id)}
+								add={() => addProductHandler(id)}/>
+						: <Button
+								id={id}
+								click={() => addProductHandler(id)}
+								name={'В корзину'}/>} 
 				</div>
-				{isAdded
-					? <Counter
-							count={props.count}
-							remove={() => removeProductHandler(id, price)}
-							add={() => addProductHandler(id, price)}/>
-					: <Button
-							id={props.id}
-							click={() => addProductHandler(id, price)}
-							name={'В корзину'}/>} 
 			</div>
 			<a href="/" className={classes.title}>{title}</a>
 			<p className={classes.description}>{about}</p>

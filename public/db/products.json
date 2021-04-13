@@ -1,6 +1,6 @@
 {
 	"syake_cogase": {
-		"id": "syake",
+		"id": "syake_cogase",
 		"name": "Сяке когасэ",
 		"description": "Опаленный лосось",
 		"price": 425,
@@ -55,7 +55,7 @@
 		"comments": ["id7514755"]
 	},
 	"abi": {
-		"id": "spaysi_syake",
+		"id": "abi",
 		"name": "Эби",
 		"description": "Креветка",
 		"price": 600,
@@ -77,7 +77,7 @@
 		"comments": ["id7514757"]
 	},
 	"syake_cunsei": {
-		"id": "8_syake_cunsei",
+		"id": "syake_cunsei",
 		"name": "Сяке кунсей",
 		"description": "Лосось копченый",
 		"price": 600,

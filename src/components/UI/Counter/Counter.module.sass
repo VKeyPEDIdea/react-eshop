@@ -1,6 +1,5 @@
 @import '../../../sass/utils/_vars';
 .counter
-	position: absolute
 	display: flex
 	align-items: center
 	justify-content: center
@@ -13,9 +12,6 @@
 	border-radius: 4px
 	transition: $st-trans
 	white-space: nowrap
-	bottom: -40px
-	left: 50%
-	transform: translate(-50%, -50%)
 	border-radius: 20px
 	background: linear-gradient(0deg, $primary, $primary-light)
 	box-shadow: 0px 3px 12px 0px rgba($primary-light, 0.35)
@@ -44,7 +40,8 @@
 		pointer-events: none
 
 .count
-	margin: 0 20px
+	margin: 0 16px
+	min-width: 24px
 
 .minus, .plus
 	cursor: pointer

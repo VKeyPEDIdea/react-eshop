@@ -5,6 +5,7 @@ import { location } from '../../../services/locationService';
 import classes from './ProductList.module.sass';
 import * as actions from '../../../store/';
 import { withRouter } from 'react-router';
+import { checkIsAdded, getItemCount } from '../../../orderHelpers';
 
 const listStyles = [
 	classes.productList,
@@ -25,28 +26,6 @@ const ProductList = props => {
 
 	const selectedCategory = location.getCurrentCategory(routerLocation.pathname) || '';
 	
-	const checkIsAdded = useCallback((id, basket) => {
-		let result = false;
-		basket.forEach(product => {
-			if (Object.keys(product).includes(id)) {
-				result = true;
-				return result;
-			};
-		});
-		return result;
-	}, []);
-
-	const getItemCount = (id, basket) => {
-		let count = 0;
-		basket.forEach(product => {
-			if (Object.keys(product).includes(id)) {
-				count = product[id];
-				return count;
-			};
-		});
-		return count;
-	};
-	
 	const getList = useCallback((productsList, basket, selectedCategory) => {
 		const filteredList = Object.values(productsList)
 			.filter(product => product.categoryId === selectedCategory)
@@ -64,7 +43,7 @@ const ProductList = props => {
 					removeProductHandler={removeProductFromBasket}/>
 		});
 		return filteredList;
-	}, [addProductToBasket, removeProductFromBasket, checkIsAdded]);
+	}, [addProductToBasket, removeProductFromBasket]);
 	
 	const list = getList(products, basket, selectedCategory);
 
@@ -89,8 +68,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		initProducts: () => dispatch(actions.initProducts()),
-		addProductToBasket: (id, price) => dispatch(actions.addProductToBasket(id, price)),
-		removeProductFromBasket: (id, price) => dispatch(actions.removeProductFromBasket(id, price)),
+		addProductToBasket: (id) => dispatch(actions.addProductToBasket(id)),
+		removeProductFromBasket: (id) => dispatch(actions.removeProductFromBasket(id)),
 	};
 };
 

@@ -4,8 +4,11 @@ import Logo from '../../UI/Logo/Logo';
 import classes from './NavBar.module.sass';
 import { typicalRoutes } from '../../../router';
 import CartBtn from '../CartBtn/CartBtn';
+import { connect } from 'react-redux';
+import { getBasketPrice, getBasketProductCount } from '../../../orderHelpers';
 
 const NavBar = props => {
+	const { basket, products } = props;
 	const getNavBtns = linksList => {
 		return linksList.map(link => {
 			return <li key={link.name}>
@@ -18,7 +21,7 @@ const NavBar = props => {
 	}
 
 	const navBtns = getNavBtns(typicalRoutes);
-
+	
 	return(
 		<>
 			<header className={classes.navBar}>
@@ -30,7 +33,9 @@ const NavBar = props => {
 				</nav>
 
 				<div className={classes.actions}>
-					<CartBtn />
+					<CartBtn 
+						count={getBasketProductCount(basket)}
+						price={getBasketPrice(basket, products)}/>
 					<div className={classes.profile}>
 						<i className="material-icons">account_box</i>
 					</div>
@@ -44,4 +49,11 @@ const NavBar = props => {
 	);
 }
 
-export default NavBar;
+const mapStateToProps = state => {
+	return {
+		basket: state.order.basket,
+		products: state.products.products
+	};
+};
+
+export default connect(mapStateToProps)(NavBar);
