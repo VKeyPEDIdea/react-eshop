@@ -3,11 +3,17 @@ import classes from './Button.module.sass';
 const styles = [classes.button, classes.buttonCart].join(' ');
 
 const Button = props => {
+	const {
+		click,
+		id,
+		name
+	} = props;
+
 	return(
 		<div
 			className={styles}
-			onClick={props.click}
-			data-id={props.id}>{props.name}</div>
+			onClick={click}
+			data-id={id}>{name}</div>
 	);
 }
 

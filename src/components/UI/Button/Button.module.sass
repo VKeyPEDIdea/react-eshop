@@ -2,6 +2,7 @@
 	
 .button
 	display: inline-block
+	position: relative
 	line-height: 20px
 	font-size: 15px
 	padding: 10px 20px
@@ -9,6 +10,18 @@
 	cursor: pointer
 	transition: $st-trans
 	white-space: nowrap
+
+	&::before
+		transition: $st-trans
+		content: ""
+		width: 90%
+		position: absolute
+		height: 20px
+		border-radius: 10px
+		background: linear-gradient(0deg, rgba($white, 0), rgba($white, .70))
+		transform: translate(-50%, -50%)
+		bottom: 5px
+		left: 50%
 
 	&--nav
 		background-color: $body
@@ -51,15 +64,4 @@
 
 			&::before
 				opacity: 0
-
-		&::before
-			transition: $st-trans
-			content: ""
-			width: 90%
-			position: absolute
-			height: 20px
-			border-radius: 10px
-			background: linear-gradient(0deg, rgba($white, 0), rgba($white, .70))
-			transform: translate(-50%, -50%)
-			bottom: 5px
-			left: 50%
+	
