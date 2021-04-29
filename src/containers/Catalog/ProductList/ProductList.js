@@ -5,6 +5,7 @@ import { location } from '../../../services/locationService';
 import classes from './ProductList.module.sass';
 import * as actions from '../../../store/';
 import { withRouter } from 'react-router';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import { checkIsAdded, getItemCount } from '../../../orderHelpers';
 
 const listStyles = [
@@ -28,7 +29,10 @@ const ProductList = props => {
 	
 	const getList = useCallback((productsList, basket, selectedCategory) => {
 		const filteredList = Object.values(productsList)
-			.filter(product => product.categoryId === selectedCategory)
+			.filter(product => {
+				if (selectedCategory) return product.categoryId === selectedCategory;
+				return true;
+			})
 			.map(product => {
 				return <ProductItem
 					key={product.id}
@@ -36,6 +40,7 @@ const ProductList = props => {
 					title={product.name}
 					about={product.description}
 					price={product.price}
+					path={product.id}
 					imgPath={product.img}
 					isAdded={checkIsAdded(product.id, basket)}
 					count={getItemCount(product.id, basket)}
@@ -53,7 +58,7 @@ const ProductList = props => {
 
 	return(
 		<div className={listStyles}>
-			{list}
+			{list ? list : <Spinner />}
 		</div>
 	);
 }

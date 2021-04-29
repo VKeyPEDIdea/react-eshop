@@ -6,14 +6,16 @@ const Button = props => {
 	const {
 		click,
 		id,
-		name
+		name,
+		disabled
 	} = props;
 
 	return(
-		<div
+		<button
 			className={styles}
+			disabled={disabled}
 			onClick={click}
-			data-id={id}>{name}</div>
+			data-id={id}>{name}</button>
 	);
 }
 

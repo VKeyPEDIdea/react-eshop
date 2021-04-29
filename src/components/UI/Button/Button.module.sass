@@ -10,6 +10,7 @@
 	cursor: pointer
 	transition: $st-trans
 	white-space: nowrap
+	font-family: $primary-font
 
 	&::before
 		transition: $st-trans
@@ -22,6 +23,19 @@
 		transform: translate(-50%, -50%)
 		bottom: 5px
 		left: 50%
+
+	&:disabled
+		background: $disabled
+		border: 2px solid $dark
+		box-shadow: none
+		color: $on-disabled
+
+		&:hover
+			background: $disabled
+			cursor: not-allowed
+
+		&::before
+			background: linear-gradient(0deg, rgba($white, 0), rgba($white, .20))
 
 	&--nav
 		background-color: $body

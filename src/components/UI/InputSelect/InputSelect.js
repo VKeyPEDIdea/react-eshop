@@ -1,10 +1,11 @@
-import classes from './InputSelect.module.sass';
 import React, { useState } from 'react';
+import classes from './InputSelect.module.sass';
 
-const InputText = props => {
+const InputSelect= props => {
 	const {
 		label,
 		optionList,
+		onChange
 	} = props;
 
 	const [isOpened, setIsOpened] = useState(false);
@@ -28,6 +29,7 @@ const InputText = props => {
 	return(
 		<div
 			className={classes.inputSelect}
+			onChange={onChange}
 			onClick={() => setIsOpened(!isOpened)}>
 			<label htmlFor="" className={classes.label}>{label}</label>
 			<div className={classes.field} value={content}>{content}</div>
@@ -42,4 +44,4 @@ const InputText = props => {
 	);
 }
 
-export default InputText;
+export default InputSelect;

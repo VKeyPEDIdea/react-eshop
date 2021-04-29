@@ -1,5 +1,5 @@
-import classes from './InputRadioButton.module.sass';
 import React from 'react';
+import classes from './InputRadioButton.module.sass';
 
 const InputRadioButton = props => {
 	const {
@@ -7,15 +7,17 @@ const InputRadioButton = props => {
 		id,
 		name,
 		value,
+		onChange
 	} = props;
 
 	return(
 		<>
-			<label className={classes.inputRadioButton} for={id}>
+			<label className={classes.inputRadioButton} htmlFor={id}>
 				<input
 					className={classes.field}
 					type='radio'
 					id={id}
+					onChange={onChange}
 					name={name}
 					value={value} />
 				<span className={classes.box}>

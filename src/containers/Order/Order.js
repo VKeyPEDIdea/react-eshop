@@ -73,16 +73,26 @@ const Order = props => {
 		}
 	];
 
+	const orderHandler = e => {
+		e.preventDefault();
+	}
+
+	const inputChangeHandler = (event, id) => {
+		console.log(event.target.value);
+	}
+
 	const getOrderForm = formConfig => {
 		return <>
 			{formConfig.map(group => {
-				return <div className={classes.formGroup}>
+				return <div key={group.groupTitle} className={classes.formGroup}>
 					<h4>{group.groupTitle}</h4>
 					{group.fields.map(field => {
 						return <Input
+							key={field.id}
 							type={field.type}
 							label={field.label}
 							id={field.id}
+							changeHandler={(event) => inputChangeHandler(event, field.id)}
 							name={field.name}
 							value={field.value}
 							isRequired={field.isRequired}
@@ -93,7 +103,10 @@ const Order = props => {
 			<div className={classes.countSummary}>
 				<span>Итого к оплате</span><span>{getBasketPrice(basket, products)} ₸</span>
 			</div>
-			<Button	name='Заказать'/>
+			<Button
+				disabled={true}
+				name='Заказать'
+				click={orderHandler}/>
 		</>
 	};
 

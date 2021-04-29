@@ -13,7 +13,8 @@ const Input = props => {
 		id,
 		name,
 		value,
-		isRequired
+		isRequired,
+		changeHandler
 	} = props;
 
 	let inputElement = null;
@@ -21,31 +22,40 @@ const Input = props => {
 		case 'text':
 			inputElement = <InputText
 			 label={label}
+			 onChange={changeHandler}
 			 id={id}/>
 			break;
 		case 'tel':
 			inputElement = <InputTelephone 
-			label={label}
-			id={id}
-			required={isRequired}/>
+				label={label}
+				id={id}
+				onChange={changeHandler}
+				required={isRequired}/>
 			break;
 		case 'select':
 			inputElement = <InputSelect
-			label={label}
-			optionList={optionList} />
+				label={label}
+				onChange={changeHandler}
+				optionList={optionList} />
 			break;
 		case 'checkbox':
-			inputElement = <InputCheckbox label={label} />
+			inputElement = <InputCheckbox
+				onChange={changeHandler}
+				label={label} />
 			break;
 		case 'radio':
 			inputElement = <InputRadioButton
 				label={label}
 				id={id}
+				onChange={changeHandler}
 				name={name}
 				value={value} />
-				break;
+			break;
 		default:
-			inputElement = <InputText />
+			inputElement = <InputText
+				label={label}
+				onChange={changeHandler}
+				id={id}/>
 			break;
 };
 

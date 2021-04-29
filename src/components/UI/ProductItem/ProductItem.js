@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import Counter from '../Counter/Counter';
 import classes from './ProductItem.module.sass';
@@ -14,6 +15,7 @@ const ProductItem = props => {
 		count,
 		price,
 		isAdded,
+		path
 	} = props;
 
 	function getImgWrapStyles() {
@@ -47,7 +49,7 @@ const ProductItem = props => {
 								name={'В корзину'}/>} 
 				</div>
 			</div>
-			<a href="/" className={classes.title}>{title}</a>
+			<Link to={'catalog/product/' + path} className={classes.title}>{title}</Link>
 			<p className={classes.description}>{about}</p>
 			<p className={classes.price}>
 				<span data-id={id}>{price}</span>

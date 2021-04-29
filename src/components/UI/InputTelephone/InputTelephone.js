@@ -5,16 +5,18 @@ const InputTelephone = props => {
 	const {
 		label,
 		id,
-		required
+		required,
+		onChange
 	} = props;
 
 	return(
 		<div className={classes.inputTelephone}>
 			<input
-				pattern='+7-[0-9]{3}-[0-9]{3}-[0-9]{2}-{0-9}{2}'
+				pattern='/^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/'
 				type="tel"
 				name={id}
 				id={id}
+				onChange={onChange}
 				required={required}
 				className={classes.field}/>
 			<label
