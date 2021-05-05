@@ -17,7 +17,6 @@ const listStyles = [
 
 const ProductList = props => {
 	const {
-		initProducts,
 		products,
 		addProductToBasket,
 		removeProductFromBasket,
@@ -52,10 +51,6 @@ const ProductList = props => {
 	
 	const list = getList(products, basket, selectedCategory);
 
-	useEffect(() => {
-		initProducts();
-	}, [initProducts]);
-
 	return(
 		<div className={listStyles}>
 			{list ? list : <Spinner />}
@@ -72,7 +67,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		initProducts: () => dispatch(actions.initProducts()),
 		addProductToBasket: (id) => dispatch(actions.addProductToBasket(id)),
 		removeProductFromBasket: (id) => dispatch(actions.removeProductFromBasket(id)),
 	};

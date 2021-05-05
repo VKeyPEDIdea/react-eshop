@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../Button/Button';
-import Counter from '../Counter/Counter';
+import CartButton from '../CartButton/CartButton';
 import classes from './ProductItem.module.sass';
 
 const ProductItem = props => {
@@ -38,15 +37,13 @@ const ProductItem = props => {
 					alt="alt"
 					className={getImgWrapStyles()}/>
 				<div className={getCartBtnWrapStyles()}>
-					{isAdded
-						? <Counter
-								count={count}
-								remove={() => removeProductHandler(id)}
-								add={() => addProductHandler(id)}/>
-						: <Button
-								id={id}
-								click={() => addProductHandler(id)}
-								name={'В корзину'}/>} 
+					<CartButton
+						isAvailable={isAdded}
+						count={count}
+						id={id}
+						onRemove={() => removeProductHandler(id)}
+						onAdd={() => addProductHandler(id)}
+					/>
 				</div>
 			</div>
 			<Link to={'catalog/product/' + path} className={classes.title}>{title}</Link>
