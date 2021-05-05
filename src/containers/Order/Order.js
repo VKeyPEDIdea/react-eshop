@@ -34,16 +34,19 @@ const Order = props => {
 				{
 					type: 'checkbox',
 					label: 'Доставить как можно скорее',
+					id: 'delivey-speed'
 				},
 				{
 					type: 'select',
 					label: 'Способ доставки',
 					optionList: ['Курьером', 'Самовывоз'],
+					id: 'delivery-method'
 				},
 				{
 					type: 'select',
 					label: 'Адрес',
 					optionList: ['Домашний', 'Рабочий'],
+					id: 'address'
 				},
 			]
 		},
@@ -81,23 +84,28 @@ const Order = props => {
 		console.log(event.target.value);
 	}
 
+	const getOrderFields = fields => {
+		return fields.map(field => <Input
+				type={field.type}
+				key={field.id}
+				label={field.label}
+				id={field.id}
+				changeHandler={(event) => inputChangeHandler(event, field.id)}
+				name={field.name}
+				value={field.value}
+				isRequired={field.isRequired}
+				optionList={field.optionList}/>
+		)
+	};
+
 	const getOrderForm = formConfig => {
 		return <>
 			{formConfig.map(group => {
-				return <div key={group.groupTitle} className={classes.formGroup}>
+				return <div
+					key={group.groupTitle}
+					className={classes.formGroup}>
 					<h4>{group.groupTitle}</h4>
-					{group.fields.map(field => {
-						return <Input
-							key={field.id}
-							type={field.type}
-							label={field.label}
-							id={field.id}
-							changeHandler={(event) => inputChangeHandler(event, field.id)}
-							name={field.name}
-							value={field.value}
-							isRequired={field.isRequired}
-							optionList={field.optionList}/>
-					})}
+					{getOrderFields(group.fields)}
 				</div>
 			})}
 			<div className={classes.countSummary}>

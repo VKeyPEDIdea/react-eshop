@@ -22,6 +22,12 @@ class Location {
 	getCurrentCategory(location) {
 		return this.getSelected(location).pop() || '';
 	}
+
+	getCurrentProductName(location) {
+		return location.slice(1)
+			.split('/')
+			.pop() || '';
+	}
 }
 
 export const location = new Location();
