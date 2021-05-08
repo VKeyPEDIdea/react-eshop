@@ -1,17 +1,23 @@
 import React, { useRef } from 'react';
 
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router';
 import { location } from '../../../services/locationService';
+import CartButton from '../../../components/UI/CartButton/CartButton';
 import classes from './ProductDetail.module.sass';
+import { checkIsAdded, getItemCount } from '../../../orderHelpers';
+import Rating from '../../../components/UI/Rating/Rating';
 
 const ProductDetail = props => {
 	const {
 		products,
+		basket,
+		addProduct,
+		removeProduct
 	} = props;
 
 	const productName = location.getCurrentProductName(props.location.pathname);
 	const {
+		id,
 		name,
 		description,
 		price,
@@ -20,8 +26,6 @@ const ProductDetail = props => {
 		brandId,
 		comments
 	} = getCurrentProduct(products, productName);
-
-	console.log('detail product');
 
 	let bounds;
 	const imgEl = useRef(null);
@@ -33,7 +37,6 @@ const ProductDetail = props => {
 	}
 
 	function rotateToMouse(e) {
-		console.log(e);
 		const mouseX = e.clientX;
 		const mouseY = e.clientY;
 		const leftX = mouseX - bounds.x;
@@ -82,17 +85,18 @@ const ProductDetail = props => {
 	return (
 		<div className={classes.productDetail}>
 			<div className={classes.imgBox}>
-				<div
+				<div className={classes.productImg}
 					ref={imgEl}
-					onMouseEnter={onImgMouseEnterHandler}
-					onMouseLeave={onImgMouseLeaveHandler}
 					alt={name}
-					className={classes.productImg}>
-					<div
+					onMouseEnter={onImgMouseEnterHandler}
+					onMouseLeave={onImgMouseLeaveHandler}>
+					<div className={classes.glow}
 						ref={glowEl}
-						className={classes.glow}
 						alt={name}>
-							<img ref={imageEL} src={img} alt={name} className={classes.image}/>
+							<img className={classes.image} ref={imageEL} src={img} alt={name} />
+						<div className={classes.rating}>
+							<Rating rate={rating} />
+						</div>
 					</div>
 				</div>
 
@@ -100,7 +104,14 @@ const ProductDetail = props => {
 			<div>
 				<h1 className={classes.title}>{name}</h1>
 				<p className={classes.price}>{price} ₸</p>
-				<p>Оценка: {rating}</p>
+				<div className={classes.buttonBox} >
+					<CartButton
+						id={name}
+						isAvailable={checkIsAdded(id, basket)}
+						count={getItemCount(id, basket)}
+						onRemove={() => removeProduct(id)}
+						onAdd={() => addProduct(id)}/>
+				</div>
 				<div className={classes.factoid}>
 					<p className={classes.subtitle}>Описание</p>
 					<p className={classes.description}>{description}</p>
@@ -113,11 +124,5 @@ const ProductDetail = props => {
 	);
 };
 
-const mapStateToProps = state => {
-	return {
-		products: state.products.products,
-		basket: state.order.basket,
-	};
-};
 
-export default connect(mapStateToProps)(withRouter(ProductDetail));
+export default withRouter(ProductDetail);

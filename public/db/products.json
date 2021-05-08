@@ -38,7 +38,7 @@
 		"description": "Краб острый, красная икра",
 		"price": 650,
 		"img": "/img/catalog/4_carui_cani.png",
-		"rating": "5",
+		"rating": "3",
 		"categoryId": "gunkany",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514754"]
@@ -49,7 +49,7 @@
 		"description": "Лосось острый",
 		"price": 600,
 		"img": "/img/catalog/5_spaysi_syake.png",
-		"rating": "5",
+		"rating": "4",
 		"categoryId": "gunkany",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514755"]
@@ -60,7 +60,7 @@
 		"description": "Креветка",
 		"price": 600,
 		"img": "/img/catalog/6_abi.png",
-		"rating": "5",
+		"rating": "3",
 		"categoryId": "abi",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514756"]
@@ -71,7 +71,7 @@
 		"description": "Лосось суши",
 		"price": 600,
 		"img": "/img/catalog/7_syake.png",
-		"rating": "5",
+		"rating": "4",
 		"categoryId": "syake",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514757"]
@@ -93,7 +93,7 @@
 		"description": "Тунец",
 		"price": 600,
 		"img": "/img/catalog/9_maguro.png",
-		"rating": "5",
+		"rating": "3",
 		"categoryId": "syake",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514759"]
@@ -104,7 +104,7 @@
 		"description": "Тунец, соус «Свит юдзу», зелень",
 		"price": 1300,
 		"img": "/img/catalog/10_temaki_maguro.png",
-		"rating": "5",
+		"rating": "2",
 		"categoryId": "temaki",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514760"]
@@ -126,7 +126,7 @@
 		"description": "Лосось, соус «Свит юдзу», зелень",
 		"price": 1300,
 		"img": "/img/catalog/12_temaki_syake.png",
-		"rating": "5",
+		"rating": "4",
 		"categoryId": "temaki",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514762"]
@@ -159,7 +159,7 @@
 		"description": "Краб, авокадо, огурец, тобико, 6 шт.",
 		"price": 2700,
 		"img": "/img/catalog/15_caliphornia_rolls.png",
-		"rating": "5",
+		"rating": "3",
 		"categoryId": "classic",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514765"]
@@ -181,7 +181,7 @@
 		"description": "С лососем",
 		"price": 900,
 		"img": "/img/catalog/17_syake_roll.png",
-		"rating": "5",
+		"rating": "4",
 		"categoryId": "classic",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514767"]
@@ -203,7 +203,7 @@
 		"description": "С тунцом",
 		"price": 900,
 		"img": "/img/catalog/19_maguro_roll.png",
-		"rating": "5",
+		"rating": "3",
 		"categoryId": "classic",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514769"]
@@ -236,7 +236,7 @@
 		"description": "Краб-микс, авокадо, тобико, зеленый лук, 6 шт.",
 		"price": 2300,
 		"img": "/img/catalog/22_kani_hot_roll.png",
-		"rating": "5",
+		"rating": "4",
 		"categoryId": "warm",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514772"]
@@ -280,7 +280,7 @@
 		"description": "Копченая курица, сыр, конина, томаты черри, шампиньоны",
 		"price": 2300,
 		"img": "/img/catalog/26_soup_chicken_cheese.png",
-		"rating": "5",
+		"rating": "4",
 		"categoryId": "chicken",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514776"]
@@ -302,7 +302,7 @@
 		"description": "Угорь, стеклянная лапша, шампиньоны, яйцо",
 		"price": 2400,
 		"img": "/img/catalog/28_soup_unagi.png",
-		"rating": "5",
+		"rating": "3",
 		"categoryId": "fish",
 		"brandId": "Fresh Fish",
 		"comments": ["id7514778"]

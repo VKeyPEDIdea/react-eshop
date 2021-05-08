@@ -1,9 +1,7 @@
 import React, { useCallback } from 'react';
-import { connect } from 'react-redux';
 import ProductItem from '../../../components/UI/ProductItem/ProductItem';
 import { location } from '../../../services/locationService';
 import classes from './ProductList.module.sass';
-import * as actions from '../../../store/';
 import { withRouter } from 'react-router';
 import NavigationTree from '../../../components/UI/NavigationTree/NavigationTree';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -19,8 +17,8 @@ const listStyles = [
 const ProductList = props => {
 	const {
 		products,
-		addProductToBasket,
-		removeProductFromBasket,
+		addProduct,
+		removeProduct,
 		basket,
 		location: routerLocation,
 	} = props;
@@ -44,13 +42,15 @@ const ProductList = props => {
 					imgPath={product.img}
 					isAdded={checkIsAdded(product.id, basket)}
 					count={getItemCount(product.id, basket)}
-					addProductHandler={addProductToBasket}
-					removeProductHandler={removeProductFromBasket}/>
+					addProductHandler={addProduct}
+					removeProductHandler={removeProduct}/>
 		});
 		return filteredList;
-	}, [addProductToBasket, removeProductFromBasket]);
+	}, [addProduct, removeProduct]);
 	
 	const list = getList(products, basket, selectedCategory);
+
+	console.log(list);
 
 	return(
 		<div className={classes.catalogList}>
@@ -62,18 +62,4 @@ const ProductList = props => {
 	);
 }
 
-const mapStateToProps = state => {
-	return {
-		products: state.products.products,
-		basket: state.order.basket,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		addProductToBasket: (id) => dispatch(actions.addProductToBasket(id)),
-		removeProductFromBasket: (id) => dispatch(actions.removeProductFromBasket(id)),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductList));
+export default (withRouter(ProductList));
