@@ -46,7 +46,7 @@ const ProductItem = props => {
 					/>
 				</div>
 			</div>
-			<Link to={'catalog/product/' + path} className={classes.title}>{title}</Link>
+			<Link to={'/catalog/product/' + path} className={classes.title}>{title}</Link>
 			<p className={classes.description}>{about}</p>
 			<p className={classes.price}>
 				<span data-id={id}>{price}</span>

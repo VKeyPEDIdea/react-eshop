@@ -1,29 +1,31 @@
 import React, { useEffect } from 'react';
-import classes from './Catalog.module.sass';
-import NavigationTree from '../../components/UI/NavigationTree/NavigationTree';
 import ProductList from './ProductList/ProductList';
 import { connect } from 'react-redux';
 import * as actions from '../../store/';
-import { Route } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import ProductDetail from './ProductDetail/ProductDetail';
 
 const Catalog = props => {
 	const { initProducts, loading } = props;
-	console.log(loading);
 
 	useEffect(() => {
 		initProducts();
 	}, [initProducts]);
 
-	const productCard = <Route path={'/catalog/product'} component={ProductDetail} />;
-
+	let routes;
+	if (!loading) {
+		routes = (
+			<Switch>
+				<Route path={'/catalog/productList'} component={ProductList} />;
+				<Route path={'/catalog/product/'} component={ProductDetail} />
+				<Redirect to='/catalog/productList' />
+			</Switch>
+		);
+	}
+	
 	return(
 		<>
-			<div className={classes.catalog}>
-				<NavigationTree/>
-				<ProductList/>
-			</div>
-			{ !loading ? productCard : null}
+			{routes}
 		</>
 	);
 };

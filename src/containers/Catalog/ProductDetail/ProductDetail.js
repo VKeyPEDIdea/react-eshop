@@ -21,6 +21,8 @@ const ProductDetail = props => {
 		comments
 	} = getCurrentProduct(products, productName);
 
+	console.log('detail product');
+
 	let bounds;
 	const imgEl = useRef(null);
 	const glowEl = useRef(null);

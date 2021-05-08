@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import ProductItem from '../../../components/UI/ProductItem/ProductItem';
 import { location } from '../../../services/locationService';
 import classes from './ProductList.module.sass';
 import * as actions from '../../../store/';
 import { withRouter } from 'react-router';
+import NavigationTree from '../../../components/UI/NavigationTree/NavigationTree';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import { checkIsAdded, getItemCount } from '../../../orderHelpers';
 
@@ -52,8 +53,11 @@ const ProductList = props => {
 	const list = getList(products, basket, selectedCategory);
 
 	return(
-		<div className={listStyles}>
-			{list ? list : <Spinner />}
+		<div className={classes.catalogList}>
+			<NavigationTree/>
+			<div className={listStyles}>
+				{list ? list : <Spinner />}
+			</div>
 		</div>
 	);
 }

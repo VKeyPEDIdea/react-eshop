@@ -16,7 +16,7 @@ class Location {
 	getSelected(location) {
 		return location.slice(1)
 			.split('/')
-			.filter(cat => cat !== '' && cat !== 'catalog');
+			.filter(cat => cat !== '' && cat !== 'catalog' && cat !== 'productList');
 	}
 
 	getCurrentCategory(location) {
