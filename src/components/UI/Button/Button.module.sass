@@ -1,0 +1,81 @@
+@import '../../../sass/utils/_vars';
+	
+.button
+	display: inline-block
+	position: relative
+	line-height: 20px
+	font-size: 15px
+	padding: 10px 20px
+	border-radius: 4px
+	cursor: pointer
+	transition: $st-trans
+	white-space: nowrap
+	font-family: $primary-font
+
+	&::before
+		transition: $st-trans
+		content: ""
+		width: 90%
+		position: absolute
+		height: 20px
+		border-radius: 10px
+		background: linear-gradient(0deg, rgba($white, 0), rgba($white, .70))
+		transform: translate(-50%, -50%)
+		bottom: 5px
+		left: 50%
+
+	&:disabled
+		background: $disabled
+		border: 2px solid $dark
+		box-shadow: none
+		color: $on-disabled
+
+		&:hover
+			background: $disabled
+			cursor: not-allowed
+
+		&::before
+			background: linear-gradient(0deg, rgba($white, 0), rgba($white, .20))
+
+	&--nav
+		background-color: $body
+		color: $alt-on-body
+
+		&:hover
+			background-color: $body-hover
+			color: $on-body
+
+	&--icon
+		background-color: $body
+		color: $alt-on-body
+		font-family: icomoon
+		padding: 8px
+		line-height: 24px
+		font-size: 24px
+
+		&:hover
+			background-color: $body-hover
+			color: $on-body
+
+	&Cart
+		border-radius: 20px
+		padding: 8px 35px
+		background: linear-gradient(0deg, $primary, $primary-light)
+		box-shadow: 0px 3px 12px 0px rgba($primary-light, 0.35)
+		color: $primary-dark
+		font-size: 15px
+		line-height: 20px
+		text-transform: uppercase
+		font-weight: 600
+		box-sizing: border-box
+		border: 2px solid $primary
+
+		&:hover
+			background: linear-gradient(0deg, $primary, $primary-hover)
+
+		&:focus
+			background: linear-gradient(0deg, $primary, $primary-hover)
+
+			&::before
+				opacity: 0
+	

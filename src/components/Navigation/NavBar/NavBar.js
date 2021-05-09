@@ -1,61 +1,72 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import Logo from '../../UI/Logo/Logo';
 import classes from './NavBar.module.sass';
+import { typicalRoutes } from '../../../router';
+import CartBtn from '../CartBtn/CartBtn';
+import { connect } from 'react-redux';
+import { getBasketPrice, getBasketProductCount } from '../../../orderHelpers';
 
-const navBar = props => {
+const NavBar = props => {
+	const {
+		basket,
+		products,
+		navDrawerToggleHandler,
+	} = props;
+
+	const getNavBtns = (linksList) => {
+		return linksList.map(link => {
+			return <li key={link.name}>
+				<NavLink
+					to={link.ref}
+					className={classes.btnNav}
+					activeClassName={[classes.btnNav, classes.active].join(' ')}>{link.name}</NavLink>
+			</li>
+		});
+	};
+
+
+	const navBtns = getNavBtns(typicalRoutes);
+	
+	const onBurgerBtnClickHandler = () => {
+
+	};
+
 	return(
 		<>
-			<header className={classes.NavBar}>
-
+			<header className={classes.navBar}>
 				<div className={classes.logo}>
-					<img src="Logo.svg" alt="logo"/>
+					<Logo />
 				</div>
-
-				<nav className="nav nav-header-desktop">
-					<ul>
-						<li>
-							<NavLink
-								to='/catalog'
-								className={classes.btnNav}
-								activeClassName={[classes.btnNav, classes.active].join(' ')}>Каталог</NavLink>
-						</li>
-						<li>
-							<NavLink
-								to='/promo'
-								className={classes.btnNav}
-								activeClassName={[classes.btnNav, classes.active].join(' ')}>Акции</NavLink>
-							</li>
+				<nav className={classes.mainNav}>
+					<ul className={classes.navList}>
+						{navBtns}
 					</ul>
 				</nav>
 
-				<div className="header-func-box">
-
-					{/* <div className="cart">
-						<i className="cart-icon material-icons">shopping_cart</i>
-						<div className="cart-info">
-							<p className="cart-info__price">
-								<span className="cart-info__price-value" id="cart-price-value">0</span>
-								<span	className="cart-info__price-currency"> ₸</span>
-							</p>
-							<p className="cart-info__amount">
-								<span className="cart-info__amount-value" id="cart-amount-value">0</span>
-								<span	className="cart-info__amount-title"> товаров</span>
-							</p>
-						</div>
-					</div> */}
-
-					{/* <div className="user-profile">
-						<i className="user-profile-icon material-icons">account_box</i>
-					</div> */}
+				<div className={classes.actions}>
+					<CartBtn 
+						count={getBasketProductCount(basket)}
+						price={getBasketPrice(basket, products)}/>
+					<div className={classes.profile}>
+						<i className="material-icons">account_box</i>
+					</div>
+					<div className={classes.burgerBtn}
+						onClick={() => navDrawerToggleHandler()}>
+						<i className='material-icons'>menu</i>
+					</div>
 				</div>
 
-				{/* <div className="mobile-menu-bnt-wrap dnone-lg dblock-sm">
-					<div className="btn btn--icon"><span className="icon-menu"></span></div>
-				</div> */}
 			</header>
 		</>
 	);
 }
 
-export default navBar;
+const mapStateToProps = state => {
+	return {
+		basket: state.order.basket,
+		products: state.products.products
+	};
+};
+
+export default connect(mapStateToProps)(NavBar);

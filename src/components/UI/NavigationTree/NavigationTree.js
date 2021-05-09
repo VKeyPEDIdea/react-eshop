@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import classes from './NavigationTree.module.sass';
 import NavigationTreeNode from './NavigationTreeNode/NavigationTreeNode';
 import { withRouter } from 'react-router';
-import { getSelected } from '../../../helpers/catalog';
+import { location } from '../../../services/locationService';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/';
 
 const NavigationTree = props => {
-	// const [selectedNodeList, nodeList] = setTree(props.tree);
-	let selectedNodeList = [];
-	let nodeList = [];
+	const { initCategories, categories } = props;
+	const [ selectedNodeList, nodeList ] = setTree(categories);
+
+	useEffect(() => {
+		initCategories();
+	}, [initCategories]);
 	
 	function setTree(list) {
-		// console.log('Categories', list);
-		const selected = getSelected(props.location.search);
+		let selectedNodes = [];
+		let normalNodes = [];
+		const selected = location.getSelected(props.location.pathname);
 		const current = selected[selected.length - 1];
 		let parent = current ? current : null;
 		const isSelected = (node) => selected.includes(node.id) || node.id === current;
@@ -21,26 +27,27 @@ const NavigationTree = props => {
 			.forEach(node => {
 				let element = <NavigationTreeNode
 					key={node.id}
+					id={node.id}
 					title={node.name}
-					click={() => props.click(node.id)}
+					rootPath={props.location.pathname}
 					selected={isSelected(node)}
 				/>;
 			
 				if (isSelected(node)) {
-					selectedNodeList.push(element);
+					selectedNodes.push(element);
 					parent = current;
 				} else {
-					nodeList.push(element);
+					normalNodes.push(element);
 				};
 			}
 		);
+
+		return [ selectedNodes, normalNodes ];
 	};
 	
-	setTree(props.fullList);
-
 	return (
 		<>
-			<nav className={classes.NavigationTree}>
+			<nav className={classes.navigationTree}>
 				<ul>
 					{selectedNodeList}
 					{nodeList}
@@ -50,4 +57,16 @@ const NavigationTree = props => {
 	);
 };
 
-export default withRouter(NavigationTree);
+const mapStateToProps = state => {
+	return {
+		categories: state.categories.categories,
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		initCategories: () => dispatch(actions.initCategories()),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavigationTree));

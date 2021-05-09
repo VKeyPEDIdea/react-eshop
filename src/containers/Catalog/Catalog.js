@@ -1,51 +1,67 @@
 import React, { useEffect } from 'react';
-import classes from './Catalog.module.sass';
-import NavigationTree from '../../components/UI/NavigationTree/NavigationTree';
 import ProductList from './ProductList/ProductList';
 import { connect } from 'react-redux';
-import * as actions from '../../store';
-import { getDirectory, getSelected } from '../../helpers/catalog';
+import * as actions from '../../store/';
+import { Redirect, Route, Switch } from 'react-router';
+import ProductDetail from './ProductDetail/ProductDetail';
+import classes from './Catalog.module.sass';
 
 const Catalog = props => {
-	const { initCategories } = props;
+	const {
+		initProducts,
+		loading,
+		products,
+		basket,
+		addProductToBasket,
+		removeProductFromBasket
+	} = props;
 
 	useEffect(() => {
-		initCategories();
-	}, [initCategories]);
+		initProducts();
+	}, [initProducts]);
 
-	const setCategory = (id) => {
-		const selected = getSelected(props.location.search);
-
-		if (selected.includes(id)) {
-			const directory = getDirectory(id, selected);
-			props.history.replace(`${props.location.pathname}?${directory}`)
-		} else {
-			props.history.push({
-				search: `${props.location.search}${id}-`,
-			});
-		}
-	};
+	let routes;
+	if (!loading) {
+		routes = (
+			<Switch>
+				<Route path={'/catalog/productList'} render={() => <ProductList
+					addProduct={addProductToBasket}
+					removeProduct={removeProductFromBasket}
+					products={products}
+					basket={basket}/>}
+				/>
+				<Route path={'/catalog/product/'} render={() => <ProductDetail
+					addProduct={addProductToBasket}
+					removeProduct={removeProductFromBasket}
+					products={products}
+					basket={basket}/>}
+				/>
+				<Redirect to='/catalog/productList' />
+			</Switch>
+		);
+	}
 	
 	return(
-		<div className={classes['row2--1-3']}>
-			<NavigationTree
-				fullList={props.categories}
-				click={setCategory}/>
-			<ProductList />
+		<div className={classes.catalog}>
+			{routes}
 		</div>
 	);
-}
+};
 
 const mapStateToProps = state => {
 	return {
-		categories: state.catalog.categories,
+		loading: state.products.loading,
+		products: state.products.products,
+		basket: state.order.basket,
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		initCategories: () => dispatch(actions.initCategories()),
-	};
+		initProducts: () => dispatch(actions.initProducts()),
+		addProductToBasket: (id) => dispatch(actions.addProductToBasket(id)),
+		removeProductFromBasket: (id) => dispatch(actions.removeProductFromBasket(id)),
+	}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
