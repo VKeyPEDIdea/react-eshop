@@ -101,7 +101,7 @@ const ProductDetail = props => {
 				</div>
 
 			</div>
-			<div>
+			<div className={classes.contentBox}>
 				<h1 className={classes.title}>{name}</h1>
 				<p className={classes.price}>{price} ₸</p>
 				<div className={classes.buttonBox} >

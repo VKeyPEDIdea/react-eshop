@@ -9,9 +9,8 @@ import { checkIsAdded, getItemCount } from '../../../orderHelpers';
 
 const listStyles = [
 	classes.productList,
-	classes['row3'],
-	classes['row3-sm'],
-	classes['row2-xs'],
+	// classes['row3-sm'],
+	// classes['row2-xs'],
 ].join(' ');
 
 const ProductList = props => {
@@ -50,11 +49,13 @@ const ProductList = props => {
 	
 	const list = getList(products, basket, selectedCategory);
 
-	console.log(list);
-
 	return(
 		<div className={classes.catalogList}>
-			<NavigationTree/>
+			<div>
+				<div className={classes.categories}>
+					<NavigationTree/>
+				</div>
+			</div>
 			<div className={listStyles}>
 				{list ? list : <Spinner />}
 			</div>

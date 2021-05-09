@@ -23,6 +23,7 @@
 	z-index: 1
 	background-size: cover
 	width: 100%
+	max-width: 360px
 	border: 2px solid $dark-light
 	border-radius: 8px
 	position: relative
@@ -40,6 +41,7 @@
 	height: 100%
 
 .rating
+	display: flex
 	position: absolute
 	bottom: 4px
 	transform: translateX(50%)
@@ -53,6 +55,7 @@
 	line-height: 1
 	font-weight: 700
 	margin-bottom: 16px
+	word-wrap:
 
 .subtitle
 	text-transform: uppercase
@@ -68,3 +71,43 @@
 
 .buttonBox
 	margin-bottom: 32px
+
+@media ( max-width: 960px )
+	.productDetail
+		grid-template-columns: 1.5fr 2.5fr
+
+	.title
+		font-size: 64px
+
+@media ( max-width: 768px )
+	.productDetail
+		grid-template-columns: repeat(2, 1fr)
+		column-gap: 24px
+
+	.title
+		font-size: 32px
+	
+	.price
+		font-size: 24px
+
+@media ( max-width: 576px )
+	.productDetail
+		display: block
+
+	.imgBox
+		display: flex
+		justify-content: center
+		margin-bottom: 20px
+		position: relative
+
+	.title
+		text-align: center
+		margin-bottom: 8px
+
+	.price
+		text-align: center
+		margin-bottom: 8px
+
+	.buttonBox
+		display: flex
+		justify-content: center

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/';
 import { Redirect, Route, Switch } from 'react-router';
 import ProductDetail from './ProductDetail/ProductDetail';
+import classes from './Catalog.module.sass';
 
 const Catalog = props => {
 	const {
@@ -28,7 +29,7 @@ const Catalog = props => {
 					removeProduct={removeProductFromBasket}
 					products={products}
 					basket={basket}/>}
-				/>;
+				/>
 				<Route path={'/catalog/product/'} render={() => <ProductDetail
 					addProduct={addProductToBasket}
 					removeProduct={removeProductFromBasket}
@@ -41,9 +42,9 @@ const Catalog = props => {
 	}
 	
 	return(
-		<>
+		<div className={classes.catalog}>
 			{routes}
-		</>
+		</div>
 	);
 };
 

@@ -17,7 +17,7 @@
 	display: flex
 	color: $alt-on-body
 
-.profile
+.profile, .burgerBtn
 	position: relative
 	padding: 16px 16px 0
 	line-height: 24px
@@ -86,3 +86,33 @@
 
 		&::before
 			opacity: 1
+
+.burgerBtn
+	display: none
+
+@media ( max-width: 768px )
+	.mainNav
+		display: none
+	
+	.burgerBtn
+		display: block
+		
+@media ( max-width: 576px )
+	.navBar
+		padding-left: 8px
+		margin-bottom: 8px
+
+@media ( max-width: 480px )
+	.profile
+		display: none
+
+@media ( max-width: 400px )
+	.navBar
+		padding: 0
+
+	.logo
+		display: none
+
+	.actions
+		width: 100%
+		justify-content: space-between

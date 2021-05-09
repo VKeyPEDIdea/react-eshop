@@ -8,8 +8,13 @@ import { connect } from 'react-redux';
 import { getBasketPrice, getBasketProductCount } from '../../../orderHelpers';
 
 const NavBar = props => {
-	const { basket, products } = props;
-	const getNavBtns = linksList => {
+	const {
+		basket,
+		products,
+		navDrawerToggleHandler,
+	} = props;
+
+	const getNavBtns = (linksList) => {
 		return linksList.map(link => {
 			return <li key={link.name}>
 				<NavLink
@@ -18,15 +23,22 @@ const NavBar = props => {
 					activeClassName={[classes.btnNav, classes.active].join(' ')}>{link.name}</NavLink>
 			</li>
 		});
-	}
+	};
+
 
 	const navBtns = getNavBtns(typicalRoutes);
 	
+	const onBurgerBtnClickHandler = () => {
+
+	};
+
 	return(
 		<>
 			<header className={classes.navBar}>
-				<Logo />
-				<nav>
+				<div className={classes.logo}>
+					<Logo />
+				</div>
+				<nav className={classes.mainNav}>
 					<ul className={classes.navList}>
 						{navBtns}
 					</ul>
@@ -39,11 +51,12 @@ const NavBar = props => {
 					<div className={classes.profile}>
 						<i className="material-icons">account_box</i>
 					</div>
+					<div className={classes.burgerBtn}
+						onClick={() => navDrawerToggleHandler()}>
+						<i className='material-icons'>menu</i>
+					</div>
 				</div>
 
-				<div className="mobile-menu-bnt-wrap dnone-lg dblock-sm">
-					<div className="btn btn--icon"><span className="icon-menu"></span></div>
-				</div>
 			</header>
 		</>
 	);
