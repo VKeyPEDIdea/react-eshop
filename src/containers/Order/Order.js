@@ -135,10 +135,10 @@ const Order = props => {
 	};
 
 	return(
-		<>
+		<div className={classes.container}>
 			<h2>Корзина</h2>
 			<div className={classes.order}>
-				<div>
+				<div className={classes.products}>
 					<h4>Товары: {count}</h4>
 					{getBasketList(basket)}
 				</div>
@@ -146,7 +146,7 @@ const Order = props => {
 					{count ? getOrderForm(config) : null}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

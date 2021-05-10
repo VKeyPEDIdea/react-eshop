@@ -22,6 +22,7 @@ const BasketProductItem = props => {
 				<h4>{title}</h4>
 				<div className={classes.count}>
 					<Counter
+						mode='dark'
 						count={count}
 						add={() => addProduct(id)}
 						remove={() => removeProduct(id)}

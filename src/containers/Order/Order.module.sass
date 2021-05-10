@@ -1,9 +1,15 @@
 @import '../../sass/utils/_vars';
+.container
+	// padding: 0 8px
+
 .order
 	display: grid
-	grid-template-columns: 2fr 2fr
+	grid-template-columns: 1fr 1fr
 	column-gap: $grid-gap-width
 	grid-row-gap: $grid-gap-width
+
+.products
+	margin-bottom: 40px
 
 .countSummary
 	margin-bottom: 20px
@@ -14,3 +20,7 @@
 
 .formGroup
 	margin-bottom: 32px
+
+@media ( max-width: 768px )
+	.order
+		display: block

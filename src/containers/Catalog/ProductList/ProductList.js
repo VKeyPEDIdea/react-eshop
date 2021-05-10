@@ -1,17 +1,11 @@
 import React, { useCallback } from 'react';
-import ProductItem from '../../../components/UI/ProductItem/ProductItem';
 import { location } from '../../../services/locationService';
 import classes from './ProductList.module.sass';
 import { withRouter } from 'react-router';
 import NavigationTree from '../../../components/UI/NavigationTree/NavigationTree';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import ProductItem from '../../../components/UI/ProductItem/ProductItem';
 import { checkIsAdded, getItemCount } from '../../../orderHelpers';
-
-const listStyles = [
-	classes.productList,
-	// classes['row3-sm'],
-	// classes['row2-xs'],
-].join(' ');
 
 const ProductList = props => {
 	const {
@@ -56,7 +50,7 @@ const ProductList = props => {
 					<NavigationTree/>
 				</div>
 			</div>
-			<div className={listStyles}>
+			<div className={classes.productList}>
 				{list ? list : <Spinner />}
 			</div>
 		</div>

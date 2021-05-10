@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,MAAM,AAAC,CACN,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,OAAO,CAC9B,UAAU,CCkCM,IAAI,CDjCpB,YAAY,CCiCI,IAAI,CDjCY,AAEjC,AAAA,aAAa,AAAC,CACb,aAAa,CAAE,IAAI,CACnB,WAAW,CAAE,GAAG,CAChB,cAAc,CAAE,SAAS,CACzB,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,aAAa,CAAG,AAElC,AAAA,UAAU,AAAC,CACV,aAAa,CAAE,IAAI,CAAG",
+    "sources": [
+        "../src/containers/Order/Order.module.sass",
+        "../src/sass/utils/_vars.sass"
+    ],
+    "names": [],
+    "file": "Order.module.min.css"
+}
