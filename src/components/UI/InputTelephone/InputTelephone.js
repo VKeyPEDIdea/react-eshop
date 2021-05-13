@@ -12,7 +12,7 @@ const InputTelephone = props => {
 	return(
 		<div className={classes.inputTelephone}>
 			<input
-				pattern='/^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/'
+				// pattern='/^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/'
 				type="tel"
 				name={id}
 				id={id}
