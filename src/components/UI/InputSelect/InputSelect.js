@@ -5,7 +5,6 @@ const InputSelect= props => {
 	const {
 		label,
 		optionList,
-		onChange
 	} = props;
 
 	const [isOpened, setIsOpened] = useState(false);
@@ -29,10 +28,11 @@ const InputSelect= props => {
 	return(
 		<div
 			className={classes.inputSelect}
-			onChange={onChange}
 			onClick={() => setIsOpened(!isOpened)}>
 			<label htmlFor="" className={classes.label}>{label}</label>
-			<div className={classes.field} value={content}>{content}</div>
+			<div
+				className={classes.field}
+				value={content}>{content}</div>
 			<div className={classes.arrow}>
 				<i className="material-icons"
 					style={isOpened ? {transform: 'rotate(180deg)'} : null}>arrow_drop_down</i>

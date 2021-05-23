@@ -1,6 +1,6 @@
 import classes from './Layout.module.sass';
 import React, { useState } from 'react';
-import NavBar from '../../components/Navigation/NavBar/NavBar';
+import NavBar from '../../containers/NavBar/NavBar';
 import NavigationDrawer from '../../components/Navigation/NavigationDrawer/NavigationDrawer';
 
 const Layout = props => {

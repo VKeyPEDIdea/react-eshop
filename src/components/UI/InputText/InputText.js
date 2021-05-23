@@ -18,7 +18,7 @@ const InputText = props => {
 	}
 
 	return(
-		<div className={classes.inputText}>
+		<div className={inputStyles.join(' ')}>
 			<input
 				onChange={onChange}
 				required={required}

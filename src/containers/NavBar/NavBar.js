@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../UI/Logo/Logo';
+import Logo from '../../components/UI/Logo/Logo';
 import classes from './NavBar.module.sass';
-import { typicalRoutes } from '../../../router';
-import CartBtn from '../CartBtn/CartBtn';
+import { typicalRoutes } from '../../router';
+import CartBtn from '../../components/Navigation/CartBtn/CartBtn';
 import { connect } from 'react-redux';
-import { getBasketPrice, getBasketProductCount } from '../../../orderHelpers';
+import { getBasketPrice, getBasketProductCount } from '../../orderHelpers';
 
 const NavBar = props => {
 	const {
@@ -24,14 +24,8 @@ const NavBar = props => {
 			</li>
 		});
 	};
-
-
 	const navBtns = getNavBtns(typicalRoutes);
 	
-	const onBurgerBtnClickHandler = () => {
-
-	};
-
 	return(
 		<>
 			<header className={classes.navBar}>
@@ -65,7 +59,7 @@ const NavBar = props => {
 const mapStateToProps = state => {
 	return {
 		basket: state.order.basket,
-		products: state.products.products
+		products: state.products.products,
 	};
 };
 

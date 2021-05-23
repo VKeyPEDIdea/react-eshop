@@ -1,3 +1,5 @@
+import { isEmptyObj } from './utilities/shared';
+
 export const checkIsAdded = (id, basket) => {
 	let result = false;
 	basket.forEach(product => {
@@ -26,7 +28,8 @@ export const getBasketProductCount = basketProductList => {
 	}, 0);
 }
 
-export const getBasketPrice = (basketProductList, catalogProducts) => {
+export const getBasketPrice = (basketProductList , catalogProducts) => {
+	if (isEmptyObj(catalogProducts)) return 0;
 	let productName;
 	return basketProductList.reduce((price, product) => {
 		productName = Object.keys(product)[0];

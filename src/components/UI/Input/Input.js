@@ -3,7 +3,6 @@ import InputText from '../InputText/InputText';
 import InputSelect from '../InputSelect/InputSelect';
 import InputCheckbox from '../InputCheckbox/InputCheckbox';
 import InputRadioButton from '../InputRadioButton/InputRadioButton';
-import InputTelephone from '../InputTelephone/InputTelephone';
 
 const Input = props => {
 	const {
@@ -30,15 +29,6 @@ const Input = props => {
 			 validity={isValid}
 			 isTouched={isTouched}
 			 id={id}/>
-			break;
-		case 'tel':
-			inputElement = <InputTelephone 
-				label={label}
-				id={id}
-				onChange={changeHandler}
-				required={isRequired}
-				validity={isValid}
-				isTouched={isTouched}/>
 			break;
 		case 'select':
 			inputElement = <InputSelect

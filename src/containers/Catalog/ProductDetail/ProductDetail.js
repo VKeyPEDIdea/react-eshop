@@ -1,21 +1,39 @@
-import React, { useRef } from 'react';
-
+import React, { useRef, useEffect } from 'react';
 import { withRouter } from 'react-router';
 import { location } from '../../../services/locationService';
 import CartButton from '../../../components/UI/CartButton/CartButton';
 import classes from './ProductDetail.module.sass';
 import { checkIsAdded, getItemCount } from '../../../orderHelpers';
 import Rating from '../../../components/UI/Rating/Rating';
+import * as actions from '../../../store/';
+import { connect } from 'react-redux';
 
 const ProductDetail = props => {
 	const {
 		products,
 		basket,
+		loading,
 		addProduct,
-		removeProduct
+		removeProduct,
+		initProducts,
 	} = props;
 
 	const productName = location.getCurrentProductName(props.location.pathname);
+	
+	useEffect(() => {
+		initProducts();
+	}, [initProducts]);
+	
+	const template = {
+		id: 'title',
+		name: 'title',
+		desription: 'description',
+		price: '0',
+		img: '',
+		brandId: 'brand',
+		comments: ''
+	};
+	
 	const {
 		id,
 		name,
@@ -25,8 +43,8 @@ const ProductDetail = props => {
 		rating,
 		brandId,
 		comments
-	} = getCurrentProduct(products, productName);
-
+	} = loading ? template : getCurrentProduct(products, productName);
+	
 	let bounds;
 	const imgEl = useRef(null);
 	const glowEl = useRef(null);
@@ -82,8 +100,8 @@ const ProductDetail = props => {
 		imgEl.current.style.transform = '';
 	};
 
-	return (
-		<div className={classes.productDetail}>
+	const content = (
+		<>
 			<div className={classes.imgBox}>
 				<div className={classes.productImg}
 					ref={imgEl}
@@ -120,9 +138,30 @@ const ProductDetail = props => {
 				<p>{brandId}</p>
 				<p>Комментарии: {comments[0]}</p>
 			</div>
+		</>
+	);
+
+	return (
+		<div className={classes.productDetail}>
+			{!loading ? content : null}
 		</div>
 	);
 };
 
+const mapStateToProps = state => {
+	return {
+		products: state.products.products,
+		basket: state.order.basket,
+		loading: state.products.loading,
+	};
+};
 
-export default withRouter(ProductDetail);
+const mapDispatchToProps = dispatch => {
+	return {
+		initProducts: () => dispatch(actions.initProducts()),
+		addProduct: (id) => dispatch(actions.addProductToBasket(id)),
+		removeProduct: (id) => dispatch(actions.removeProductFromBasket(id)),
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductDetail));
