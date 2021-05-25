@@ -82,7 +82,6 @@ const OrderForm = props => {
 			isReady = input.isValid && isReady; 
 		});
 		setOrderIsReady(isReady);
-		console.log(isReady);
 	}, [name, phone, address]);
 
 	const nameChangeHandler = event => {
