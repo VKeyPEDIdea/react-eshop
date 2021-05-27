@@ -22,7 +22,23 @@ const ProductList = props => {
 		location: routerLocation,
 	} = props;
 
+	const sortSelectDictionary = [
+		{
+			title: 'Сначала дешевле',
+			value: 'cheaper'
+		},
+		{
+			title: 'Сначала дороже',
+			value: 'expensive'
+		},
+		{
+			title: 'По названию',
+			value: 'alphabet'
+		},
+	];
+
 	const [search, setSearch] = useState(null);
+	const [sort, setSort] = useState(null);
 
 	useEffect(() => {
 		initProducts();
@@ -41,6 +57,18 @@ const ProductList = props => {
 				if (query) return isContain(query, [name, description]);
 				return true;
 			})
+			.sort((a, b) => {
+				switch(sort) {
+					case 'cheaper':
+						return a.price - b.price;
+					case 'expensive':
+						return b.price - a.price;
+					case 'alphabet':
+						return a.name > b.name;
+					default:
+						return a - b;
+				}
+			})
 			.map(product => {
 				return <ProductItem
 					key={product.id}
@@ -56,11 +84,16 @@ const ProductList = props => {
 					removeProductHandler={removeProduct}/>
 		});
 		return filteredList;
-	}, [addProduct, removeProduct]);
+	}, [addProduct, removeProduct, sort]);
 	
 	const onSearchChange = debounce(event => {
 		setSearch(event.target.value);
 	}, 500);
+
+	const onSortChange = event => {
+		console.log(event.target.value);
+		setSort(event.target.value);
+	};
 	
 	const list = getList(products, basket, selectedCategory, search);
 
@@ -82,7 +115,8 @@ const ProductList = props => {
 					</div>
 					<InputSelect
 						label='Сортировать по'
-						optionList={['Сначала дешевле', 'Сначала дороже', 'По названию']}/>
+						onChange={event => onSortChange(event)}
+						optionList={sortSelectDictionary}/>
 				</div>
 				<div className={classes.productList}>
 					{list ? list : <Spinner />}
