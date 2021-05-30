@@ -2,7 +2,7 @@
 	"sushi": {
 		"id": "sushi",
 		"name": "Суши",
-		"parent_id": null
+		"parent_id": ""
 	},
 	"nigiri": {
 		"id": "nigiri",
@@ -32,7 +32,7 @@
 	"rolls": {
 		"id": "rolls",
 		"name": "Роллы",
-		"parent_id": null
+		"parent_id": ""
 	},
 	"classic": {
 		"id": "classic",
@@ -47,7 +47,7 @@
 	"soups": {
 		"id": "soups",
 		"name": "Супы",
-		"parent_id": null
+		"parent_id": ""
 	},
 	"chicken": {
 		"id": "chicken",

@@ -20,8 +20,8 @@ const NavigationTree = props => {
 		let normalNodes = [];
 		const selected = location.getSelected(props.location.pathname);
 		const current = selected[selected.length - 1];
-		let parent = current ? current : null;
-		const isSelected = (node) => selected.includes(node.id) || node.id === current;
+		let parent = current ? current : '';
+		const isSelected = node => selected.includes(node.id) || node.id === current;
 		Object.values(list)
 			.filter(node => selected.includes(node.id) || node.parent_id === parent)
 			.forEach(node => {
@@ -32,6 +32,7 @@ const NavigationTree = props => {
 					rootPath={props.location.pathname}
 					selected={isSelected(node)}
 				/>;
+				console.log(node);
 			
 				if (isSelected(node)) {
 					selectedNodes.push(element);
@@ -44,6 +45,7 @@ const NavigationTree = props => {
 
 		return [ selectedNodes, normalNodes ];
 	};
+	
 	
 	return (
 		<>

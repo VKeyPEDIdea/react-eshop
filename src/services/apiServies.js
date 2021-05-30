@@ -8,7 +8,7 @@ export class Api {
 
 	async getCategories() {
 		try {
-			const response = await axios.get(`${this.url}db/categories.json`);
+			const response = await axios.get(`${this.url}/categories.json`);
 			return response.data;
 		} catch (error) {
 			console.warn(error);
@@ -18,7 +18,7 @@ export class Api {
 
 	async getProducts() {
 		try {
-			const response = await axios.get(`${this.url}db/products.json`);
+			const response = await axios.get(`${this.url}/products.json`);
 			return response.data;
 		} catch (error) {
 			console.warn(error);

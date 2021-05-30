@@ -1,3 +1,3 @@
 export const apiConfig = {
-	url: 'http://localhost:3000/',
+	url: 'https://freshfisheshop-default-rtdb.europe-west1.firebasedatabase.app/',
 };
