@@ -5,7 +5,8 @@ const InputSelect= props => {
 	const {
 		label,
 		optionList,
-		onChange
+		onChange,
+		id
 	} = props;
 
 	const [isOpened, setIsOpened] = useState(false);
@@ -38,6 +39,7 @@ const InputSelect= props => {
 					style={isOpened ? {transform: 'rotate(180deg)'} : null}>arrow_drop_down</i>
 			</div>
 			<select
+				id={id}
 				value={selectValue}
 				className={classes.select}
 				onChange={onChange}>

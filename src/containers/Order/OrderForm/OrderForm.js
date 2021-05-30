@@ -33,7 +33,14 @@ const OrderForm = props => {
 	const [delivery] = useState({
 		label: 'Способ доставки',
 		id: 'delivery',
-		optionList: ['Курьером', 'Самовывоз'],
+		optionList: [{
+			title: 'Курьером',
+			value: 'courier'
+		},
+		{
+			title: 'Самовывоз',
+			value: 'selftake'
+		}],
 		value: '',
 		isRequired: false,
 		isValid: true,
@@ -166,10 +173,7 @@ const OrderForm = props => {
 				label={delivery.label}
 				optionList={delivery.optionList}
 				id={delivery.id}
-				value={delivery.value}
-				required={delivery.isRequired}
-				validity={delivery.isValid}
-				isTouched={delivery.touched} />
+				value={delivery.value} />
 			<InputText
 				label={address.label}
 				id={address.id}
