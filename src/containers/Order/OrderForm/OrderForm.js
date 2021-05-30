@@ -30,16 +30,16 @@ const OrderForm = props => {
 		isValid: false,
 		touched: false,
 	});
-	const [delivery] = useState({
+	const [delivery, setDelivery] = useState({
 		label: 'Способ доставки',
 		id: 'delivery',
 		optionList: [{
-			title: 'Курьером',
-			value: 'courier'
+			title: 'Самовывоз',
+			value: 'selftake',
 		},
 		{
-			title: 'Самовывоз',
-			value: 'selftake'
+			title: 'Курьером',
+			value: 'courier'
 		}],
 		value: '',
 		isRequired: false,
@@ -92,7 +92,6 @@ const OrderForm = props => {
 	}, [name, phone, address]);
 
 	const nameChangeHandler = event => {
-		console.log('name', name);
 		setName(updateObject(name, {
 			touched: true,
 			isValid: event.target.value ? true : false,
@@ -106,6 +105,12 @@ const OrderForm = props => {
 			isValid: event.target.value ? true : false,
 			value: event.target.value
 		}));
+	};
+
+	const deliveryChangeHadler = event => {
+		setDelivery(updateObject(delivery, {
+			value: event.target.value,
+		}))
 	};
 
 	const addressChangeHandler = event => {
@@ -124,26 +129,22 @@ const OrderForm = props => {
 
 	function cashChangeHandler(event) {
 		setCash(updateObject(cash, {
-			isTouched: true,
+			touched: true,
 			checked: event.target.checked
 		}));
 		setTerminal(updateObject(terminal, {
 			checked: !event.target.checked
 		}));
-		console.log('cash', cash.checked);
-		console.log('terminal', terminal.checked);
 	}
 	
 	function terminalChangeHandler(event) {
 		setTerminal(updateObject(terminal, {
-			isTouched: true,
+			touched: true,
 			checked: event.target.checked
 		}));
-		setCash(updateObject(cash), {
+		setCash(updateObject(cash, {
 			checked: !event.target.checked,
-		});
-		console.log('cash', cash.checked);
-		console.log('terminal', terminal.checked);
+		}));
 	}
 
 	function orderHandler(event) {
@@ -171,17 +172,18 @@ const OrderForm = props => {
 				id={phone.id}/>
 			<InputSelect
 				label={delivery.label}
+				onChange={event => deliveryChangeHadler(event)}
 				optionList={delivery.optionList}
 				id={delivery.id}
 				value={delivery.value} />
-			<InputText
+			{(delivery.value === 'courier') ? <InputText
 				label={address.label}
 				id={address.id}
 				value={address.id}
 				onChange={event => addressChangeHandler(event)}
 				required={address.isRequired}
 				validity={address.isValid}
-				isTouched={address.touched}/>
+				isTouched={address.touched}/> : null}
 			<h4>Оплата</h4>
 			<InputRadioButton
 				label={cash.label}
@@ -201,14 +203,14 @@ const OrderForm = props => {
 				validity={terminal.isValid}
 				required={terminal.isRequired}
 				isTouched={terminal.touched} />
-			<InputText
+			{cash.checked ? <InputText
 				label={cashCount.label}
 				id={cashCount.id}
 				value={cashCount.id}
 				onChange={event => cashCountChangeHandler(event)}
 				required={cashCount.isRequired}
 				validity={cashCount.isValid}
-				isTouched={cashCount.touched}/>
+				isTouched={cashCount.touched}/> : null}
 			<div className={classes.countSummary}>
 				<span>Итого к оплате</span><span>{getBasketPrice(basket, products)} ₸</span>
 			</div>
