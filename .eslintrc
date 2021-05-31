@@ -27,6 +27,6 @@
     "one-var-declaration-per-line": "off",
     "no-underscore-dangle": "off",
     "no-continue": "off"
-  },
-  "extends":  ["airbnb/base"]
+  }
+  // "extends":  ["airbnb/base"]
 }

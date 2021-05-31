@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./containers/Layout/Layout";
 import { typicalRoutes, singularRoutes } from './router';
 
@@ -23,6 +23,7 @@ function App() {
 					<Switch>
 						{singularRouteList}
 						{routeList}
+						<Redirect to='/catalog' />
 					</Switch>
 				</Layout>
 			</BrowserRouter>
