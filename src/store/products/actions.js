@@ -7,7 +7,7 @@ export const initProducts = () => {
 			.then(data => dispatch(fetchProductsSuccess(data)))
 			.catch(error => dispatch(fetchProductsFailed(error)));
 	}
-}
+};
 
 export const fetchProductsSuccess = products => {
 	return {
@@ -16,13 +16,13 @@ export const fetchProductsSuccess = products => {
 			products,
 		}
 	}
-}
+};
 
 export const fetchProductsFailed = error => {
 	return {
-		type: actionTypes.FETCH_PRODUCTS_SUCCESS,
+		type: actionTypes.FETCH_PRODUCTS_FAILED,
 		payload: {
 			error,
 		}
 	}
-}
+};
