@@ -24,8 +24,8 @@ const BasketProductItem = props => {
 					<Counter
 						mode='dark'
 						count={count}
-						add={() => addProduct(id)}
-						remove={() => removeProduct(id)}
+						add={addProduct}
+						remove={removeProduct}
 					/>
 				</div>
 				<p className={classes.price}>{price} ₸</p>

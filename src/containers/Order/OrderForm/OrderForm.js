@@ -5,14 +5,14 @@ import InputSelect from '../../../components/UI/InputSelect/InputSelect';
 import InputText from '../../../components/UI/InputText/InputText';
 import InputRadioButton from '../../../components/UI/InputRadioButton/InputRadioButton';
 import classes from './OrderForm.module.sass';
-import { updateObject } from '../../../utilities/shared';
-import { connect } from 'react-redux';
+import { updateObject } from '../../../utilities/';
+import { useSelector } from 'react-redux';
+import { selectProductsList } from '../../Catalog/ProductList/productsSlice';
+import { selectBasketList } from '../basketSlice';
 
 const OrderForm = props => {
-	const {
-		basket,
-		products,
-	} = props;
+	const products = useSelector(selectProductsList);
+	const basket = useSelector(selectBasketList);
 	const [orderIsReady, setOrderIsReady] = useState(false);	
 	const [name, setName] = useState({
 		label: 'Имя',
@@ -222,11 +222,4 @@ const OrderForm = props => {
 	);
 };
 
-const mapStateToProps = state => {
-	return {
-		basket: state.order.basket,
-		products: state.products.products
-	};
-};
-
-export default connect(mapStateToProps)(OrderForm);
+export default OrderForm;

@@ -1,69 +1,60 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { location } from '../../../services/locationService';
-import classes from './ProductList.module.sass';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
+import classes from './ProductList.module.sass';
+import { location } from '../../../services/locationService';
+import { checkIsAdded, getItemCount } from '../../../orderHelpers';
+import { debounce, isContain, productsSortSelectDic } from '../../../utilities/';
 import NavigationTree from '../NavigationTree/NavigationTree';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import ProductItem from '../../../components/UI/ProductItem/ProductItem';
-import { checkIsAdded, getItemCount } from '../../../orderHelpers';
-import * as actions from '../../../store/';
-import { connect } from 'react-redux';
 import InputText from '../../../components/UI/InputText/InputText';
 import InputSelect from '../../../components/UI/InputSelect/InputSelect';
-import { debounce, isContain } from '../../../utilities/shared';
+import {
+	fetchProducts,
+	selectProductsList
+} from './productsSlice';
+import {
+	selectBasketList,
+	selectLoading,
+	addProductToBasket,
+	removeProductFromBasket,
+} from '../../Order/basketSlice';
 
 const ProductList = props => {
-	const {
-		products,
-		basket,
-		addProduct,
-		removeProduct,
-		initProducts,
-		location: routerLocation,
-	} = props;
-
-	const sortSelectDictionary = [
-		{
-			title: 'Сначала дешевле',
-			value: 'cheaper'
-		},
-		{
-			title: 'Сначала дороже',
-			value: 'expensive'
-		},
-		{
-			title: 'По названию',
-			value: 'alphabet'
-		},
-	];
+	const {	location: routerLocation } = props;
 
 	const [search, setSearch] = useState(null);
 	const [sort, setSort] = useState(null);
 
+	const loading = useSelector(selectLoading);
+	const basket = useSelector(selectBasketList);
+	const products = useSelector(selectProductsList);
+	const dispatch = useDispatch();
+
 	useEffect(() => {
-		initProducts();
-	}, [initProducts]);
+		dispatch(fetchProducts());
+	}, [fetchProducts]);
 
 	const selectedCategory = location.getCurrentCategory(routerLocation.pathname) || '';
 	
-	const getList = useCallback((productsList, basket, selectedCategory, query) => {
+	const getList = (productsList, basket, selectedCategory, query) => {
 		const filteredList = Object.values(productsList)
-			.filter(product => {
-				if (selectedCategory) return product.categoryId === selectedCategory;
+			.filter(({ categoryId }) => {
+				if (selectedCategory) return categoryId === selectedCategory;
 				return true;
 			})
-			.filter(product => {
-				const { name , description } = product;
+			.filter(({ name , description }) => {
 				if (query) return isContain(query, [name, description]);
 				return true;
 			})
 			.sort((a, b) => {
 				switch(sort) {
-					case 'cheaper':
+					case '1':
 						return a.price - b.price;
-					case 'expensive':
+					case '2':
 						return b.price - a.price;
-					case 'alphabet':
+					case '3':
 						return a.name > b.name;
 					default:
 						return a - b;
@@ -80,18 +71,17 @@ const ProductList = props => {
 					imgPath={product.img}
 					isAdded={checkIsAdded(product.id, basket)}
 					count={getItemCount(product.id, basket)}
-					addProductHandler={addProduct}
-					removeProductHandler={removeProduct}/>
+					addProductHandler={() => dispatch(addProductToBasket(product.id))}
+					removeProductHandler={() => dispatch(removeProductFromBasket(product.id))}/>
 		});
 		return filteredList;
-	}, [addProduct, removeProduct, sort]);
+	};
 	
 	const onSearchChange = debounce(event => {
 		setSearch(event.target.value);
 	}, 500);
 
 	const onSortChange = event => {
-		console.log(event.target.value);
 		setSort(event.target.value);
 	};
 	
@@ -116,30 +106,14 @@ const ProductList = props => {
 					<InputSelect
 						label='Сортировать по'
 						onChange={event => onSortChange(event)}
-						optionList={sortSelectDictionary}/>
+						optionList={productsSortSelectDic}/>
 				</div>
 				<div className={classes.productList}>
-					{list ? list : <Spinner />}
+					{loading ? <Spinner /> : list}
 				</div>
 			</div>
 		</div>
 	);
 };
 
-const mapStateToProps = state => {
-	return {
-		loading: state.products.loading,
-		products: state.products.products,
-		basket: state.order.basket,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		initProducts: () => dispatch(actions.initProducts()),
-		addProduct: (id) => dispatch(actions.addProductToBasket(id)),
-		removeProduct: (id) => dispatch(actions.removeProductFromBasket(id)),
-	}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)((withRouter(ProductList)));
+export default withRouter(ProductList);

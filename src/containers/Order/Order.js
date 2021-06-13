@@ -1,14 +1,13 @@
 import React from 'react';
 import classes from './Order.module.sass';
-import { connect } from 'react-redux';
 import { getBasketProductCount } from '../../orderHelpers';
 import OrderForm from './OrderForm/OrderForm';
-import OrderProductList from './OrderProductList/OrderProductList';
+import BasketList from './BasketList/';
+import { selectBasketList } from './basketSlice'
+import { useSelector } from 'react-redux';
 
 const Order = props => {
-	const {
-		basket,
-	} = props;
+	const basket = useSelector(selectBasketList)
 	const count = getBasketProductCount(basket);
 
 	return(
@@ -16,7 +15,7 @@ const Order = props => {
 			<h2>Корзина</h2>
 			<div className={classes.order}>
 				<div className={classes.products}>
-					<OrderProductList />
+					<BasketList />
 				</div>
 				<div>{count ? <OrderForm /> : null}</div>
 			</div>
@@ -24,10 +23,4 @@ const Order = props => {
 	);
 };
 
-const mapStateToProps = state => {
-	return {
-		basket: state.order.basket,
-	};
-};
-
-export default connect(mapStateToProps)(Order);
+export default Order;

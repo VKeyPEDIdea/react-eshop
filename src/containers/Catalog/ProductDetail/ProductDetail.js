@@ -3,56 +3,38 @@ import { withRouter } from 'react-router';
 import { location } from '../../../services/locationService';
 import CartButton from '../../../components/UI/CartButton/CartButton';
 import classes from './ProductDetail.module.sass';
-import { checkIsAdded, getItemCount } from '../../../orderHelpers';
 import Rating from '../../../components/UI/Rating/Rating';
-import * as actions from '../../../store/';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	fetchProducts,
+	selectProductsLoading,
+	selectProductByName,
+} from '../ProductList/productsSlice';
+import {
+	addProductToBasket,
+	removeProductFromBasket,
+	selectCheckIsAdded,
+	selectItemCount
+} from '../../Order/basketSlice';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 const ProductDetail = props => {
-	const {
-		products,
-		basket,
-		loading,
-		addProduct,
-		removeProduct,
-		initProducts,
-	} = props;
-
+	const dispatch = useDispatch();
 	const productName = location.getCurrentProductName(props.location.pathname);
 	
+	const loading = useSelector(selectProductsLoading);
+	const product = useSelector(state => selectProductByName(state, productName));
+	const isAdded = useSelector(state => selectCheckIsAdded(state, product.id));
+	const count = useSelector(state => selectItemCount(state, product.id));
+	
 	useEffect(() => {
-		initProducts();
-	}, [initProducts]);
-	
-	const template = {
-		id: 'title',
-		name: 'title',
-		desription: 'description',
-		price: '0',
-		img: '',
-		brandId: 'brand',
-		comments: ''
-	};
-	
-	const {
-		id,
-		name,
-		description,
-		price,
-		img,
-		rating,
-		brandId,
-		comments
-	} = loading ? template : getCurrentProduct(products, productName);
+		dispatch(fetchProducts());
+	}, [fetchProducts]);
 	
 	let bounds;
 	const imgEl = useRef(null);
 	const glowEl = useRef(null);
 	const imageEL = useRef(null);
-
-	function getCurrentProduct(productList, productTitle) {
-		return productList[productTitle];
-	}
 
 	function rotateToMouse(e) {
 		const mouseX = e.clientX;
@@ -100,68 +82,65 @@ const ProductDetail = props => {
 		imgEl.current.style.transform = '';
 	};
 
-	const content = (
-		<>
-			<div className={classes.imgBox}>
-				<div className={classes.productImg}
-					ref={imgEl}
-					alt={name}
-					onMouseEnter={onImgMouseEnterHandler}
-					onMouseLeave={onImgMouseLeaveHandler}>
-					<div className={classes.glow}
-						ref={glowEl}
-						alt={name}>
-							<img className={classes.image} ref={imageEL} src={img} alt={name} />
-						<div className={classes.rating}>
-							<Rating rate={rating} />
+	const getContent = product => {
+		const {
+			id,
+			name,
+			description,
+			price,
+			img,
+			rating,
+			brandId,
+			comments
+		} = product;
+
+		return (
+			<>
+				<div className={classes.imgBox}>
+					<div className={classes.productImg}
+						ref={imgEl}
+						alt={name}
+						onMouseEnter={onImgMouseEnterHandler}
+						onMouseLeave={onImgMouseLeaveHandler}>
+						<div className={classes.glow}
+							ref={glowEl}
+							alt={name}>
+								<img className={classes.image} ref={imageEL} src={img} alt={name} />
+							<div className={classes.rating}>
+								<Rating rate={rating} />
+							</div>
 						</div>
 					</div>
+	
 				</div>
-
-			</div>
-			<div className={classes.contentBox}>
-				<h1 className={classes.title}>{name}</h1>
-				<p className={classes.price}>{price} ₸</p>
-				<div className={classes.buttonBox} >
-					<CartButton
-						id={name}
-						isAvailable={checkIsAdded(id, basket)}
-						count={getItemCount(id, basket)}
-						onRemove={() => removeProduct(id)}
-						onAdd={() => addProduct(id)}/>
+				<div className={classes.contentBox}>
+					<h1 className={classes.title}>{name}</h1>
+					<p className={classes.price}>{price} ₸</p>
+					<div className={classes.buttonBox} >
+						<CartButton
+							id={name}
+							isAvailable={isAdded}
+							count={count}
+							onRemove={() => dispatch(removeProductFromBasket(id))}
+							onAdd={() => dispatch(addProductToBasket(id))}/>
+					</div>
+					<div className={classes.factoid}>
+						<p className={classes.subtitle}>Описание</p>
+						<p className={classes.description}>{description}</p>
+					</div>
+					<p className={classes.subtitle}>Производитель</p>
+					<p>{brandId}</p>
+					<p>Комментарии: {comments[0]}</p>
 				</div>
-				<div className={classes.factoid}>
-					<p className={classes.subtitle}>Описание</p>
-					<p className={classes.description}>{description}</p>
-				</div>
-				<p className={classes.subtitle}>Производитель</p>
-				<p>{brandId}</p>
-				<p>Комментарии: {comments[0]}</p>
-			</div>
-		</>
-	);
+			</>
+		);
+	}
 
 	return (
 		<div className={classes.productDetail}>
-			{!loading ? content : null}
+			{loading ? <Spinner /> : getContent(product)}
 		</div>
 	);
 };
 
-const mapStateToProps = state => {
-	return {
-		products: state.products.products,
-		basket: state.order.basket,
-		loading: state.products.loading,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		initProducts: () => dispatch(actions.initProducts()),
-		addProduct: (id) => dispatch(actions.addProductToBasket(id)),
-		removeProduct: (id) => dispatch(actions.removeProductFromBasket(id)),
-	}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductDetail));
+export default withRouter(ProductDetail);

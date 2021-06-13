@@ -41,8 +41,8 @@ const ProductItem = props => {
 						isAvailable={isAdded}
 						count={count}
 						id={id}
-						onRemove={() => removeProductHandler(id)}
-						onAdd={() => addProductHandler(id)}
+						onRemove={removeProductHandler}
+						onAdd={addProductHandler}
 					/>
 				</div>
 			</div>
