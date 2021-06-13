@@ -39,12 +39,24 @@
 		bottom: 5px
 		left: 50%
 		pointer-events: none
+	
+	&Dark
+		background: linear-gradient(0deg, $dark, $body)
+		box-shadow: none
+		border: 2px solid $body
+		color: $alt-on-body
+
+		&::before
+			background: linear-gradient(0deg, rgba($white, 0), rgba($grey, 0.7))
+		
+		&:hover
+			background: linear-gradient(0deg, $dark, $body-hover)
 
 .count
 	margin: 0 16px
 	min-width: 24px
 
-.minus, .plus
+.btn
 	cursor: pointer
 	font-size: 24px
 	height: 24px
@@ -53,3 +65,7 @@
 
 	&:hover
 		background-color: $primary-hover
+
+	&Dark
+		&:hover
+			background-color: darken($dark, 7%)

@@ -7,7 +7,7 @@ const Rating = props => {
 	function getRating(number) {
 		let stars = [];
 		for (let i = 0; i < number; i++) {
-			stars.push(<i className='material-icons'>star</i>)
+			stars.push(<i key={`star${i}`} className='material-icons'>star</i>)
 		}
 		return stars;
 	}

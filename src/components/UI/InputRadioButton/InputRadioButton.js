@@ -7,13 +7,15 @@ const InputRadioButton = props => {
 		id,
 		name,
 		value,
-		onChange
+		onChange,
+		checked
 	} = props;
 
 	return(
 		<>
 			<label className={classes.inputRadioButton} htmlFor={id}>
 				<input
+					checked={checked}
 					className={classes.field}
 					type='radio'
 					id={id}

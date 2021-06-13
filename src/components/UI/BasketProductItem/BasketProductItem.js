@@ -22,9 +22,10 @@ const BasketProductItem = props => {
 				<h4>{title}</h4>
 				<div className={classes.count}>
 					<Counter
+						mode='dark'
 						count={count}
-						add={() => addProduct(id)}
-						remove={() => removeProduct(id)}
+						add={addProduct}
+						remove={removeProduct}
 					/>
 				</div>
 				<p className={classes.price}>{price} ₸</p>

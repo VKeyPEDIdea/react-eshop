@@ -1,7 +1,8 @@
 import * as actionTypes from '../actionTypes';
+import { storage } from '../../utilities/shared';
 
 const initialState = {
-	basket: [],
+	basket: storage('basket') || [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ const reducer = (state = initialState, action) => {
 			} else {
 				updatedBasket.push({[action.payload.productId]: 1});
 			}
+			storage('basket', updatedBasket);
 
 			return { ...updatedState, basket: updatedBasket };
 		case actionTypes.REMOVED_PRODUCT_FROM_BASKET:
@@ -35,6 +37,7 @@ const reducer = (state = initialState, action) => {
 					});
 				};
 			}
+			storage('basket', updatedBasket);
 
 			return { ...updatedState, basket: updatedBasket };
 		default:

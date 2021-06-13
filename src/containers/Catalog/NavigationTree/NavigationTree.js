@@ -1,29 +1,30 @@
 import React, { useEffect } from 'react';
-
 import classes from './NavigationTree.module.sass';
 import NavigationTreeNode from './NavigationTreeNode/NavigationTreeNode';
 import { withRouter } from 'react-router';
 import { location } from '../../../services/locationService';
-import { connect } from 'react-redux';
-import * as actions from '../../../store/';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCategoriesList, fetchCategories } from './categoriesSlice';
 
 const NavigationTree = props => {
-	const { initCategories, categories } = props;
-	const [ selectedNodeList, nodeList ] = setTree(categories);
-
+	const dispatch = useDispatch();
+	const categories = useSelector(selectCategoriesList);
+	
 	useEffect(() => {
-		initCategories();
-	}, [initCategories]);
+		dispatch(fetchCategories());
+	}, [fetchCategories]);
+
+	const [ selectedNodeList, nodeList ] = setTree(categories);
 	
 	function setTree(list) {
 		let selectedNodes = [];
 		let normalNodes = [];
 		const selected = location.getSelected(props.location.pathname);
 		const current = selected[selected.length - 1];
-		let parent = current ? current : null;
-		const isSelected = (node) => selected.includes(node.id) || node.id === current;
+		let parent = current ? current : '';
+		const isSelected = ({ id }) => selected.includes(id) || id === current;
 		Object.values(list)
-			.filter(node => selected.includes(node.id) || node.parent_id === parent)
+			.filter(({ id, parent_id }) => selected.includes(id) || parent_id === parent)
 			.forEach(node => {
 				let element = <NavigationTreeNode
 					key={node.id}
@@ -45,6 +46,7 @@ const NavigationTree = props => {
 		return [ selectedNodes, normalNodes ];
 	};
 	
+	
 	return (
 		<>
 			<nav className={classes.navigationTree}>
@@ -57,16 +59,4 @@ const NavigationTree = props => {
 	);
 };
 
-const mapStateToProps = state => {
-	return {
-		categories: state.categories.categories,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		initCategories: () => dispatch(actions.initCategories()),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavigationTree));
+export default withRouter(NavigationTree);

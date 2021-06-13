@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./containers/Layout/Layout";
 import { typicalRoutes, singularRoutes } from './router';
 
@@ -20,8 +20,11 @@ function App() {
     <div className="App">
 			<BrowserRouter>
 				<Layout>
-					{routeList}
-					{singularRouteList}
+					<Switch>
+						{singularRouteList}
+						{routeList}
+						<Redirect to='/catalog' />
+					</Switch>
 				</Layout>
 			</BrowserRouter>
     </div>

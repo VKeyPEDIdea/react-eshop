@@ -3,7 +3,6 @@ import InputText from '../InputText/InputText';
 import InputSelect from '../InputSelect/InputSelect';
 import InputCheckbox from '../InputCheckbox/InputCheckbox';
 import InputRadioButton from '../InputRadioButton/InputRadioButton';
-import InputTelephone from '../InputTelephone/InputTelephone';
 
 const Input = props => {
 	const {
@@ -14,7 +13,10 @@ const Input = props => {
 		name,
 		value,
 		isRequired,
-		changeHandler
+		isValid,
+		isTouched,
+		changeHandler,
+		checked,
 	} = props;
 
 	let inputElement = null;
@@ -23,39 +25,49 @@ const Input = props => {
 			inputElement = <InputText
 			 label={label}
 			 onChange={changeHandler}
+			 required={isRequired}
+			 validity={isValid}
+			 isTouched={isTouched}
 			 id={id}/>
-			break;
-		case 'tel':
-			inputElement = <InputTelephone 
-				label={label}
-				id={id}
-				onChange={changeHandler}
-				required={isRequired}/>
 			break;
 		case 'select':
 			inputElement = <InputSelect
 				label={label}
+				id={id}
 				onChange={changeHandler}
-				optionList={optionList} />
+				optionList={optionList}
+				required={isRequired}
+				validity={isValid}
+				isTouched={isTouched} />
 			break;
 		case 'checkbox':
 			inputElement = <InputCheckbox
 				onChange={changeHandler}
-				label={label} />
+				label={label}
+				required={isRequired}
+				validity={isValid}
+				isTouched={isTouched}/>
 			break;
 		case 'radio':
 			inputElement = <InputRadioButton
+				checked={checked}
 				label={label}
 				id={id}
 				onChange={changeHandler}
 				name={name}
-				value={value} />
+				value={value}
+				required={isRequired}
+				validity={isValid}
+				isTouched={isTouched}/>
 			break;
 		default:
 			inputElement = <InputText
 				label={label}
 				onChange={changeHandler}
-				id={id}/>
+				id={id}
+				required={isRequired}
+				validity={isValid}
+				isTouched={isTouched}/>
 			break;
 };
 

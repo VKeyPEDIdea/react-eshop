@@ -1,7 +1,9 @@
-export const checkIsAdded = (id, basket) => {
+import { isEmptyObj } from './utilities/';
+
+export const checkIsAdded = (productId, basket) => {
 	let result = false;
-	basket.forEach(product => {
-		if (Object.keys(product).includes(id)) {
+	basket.forEach(({ id }) => {
+		if (id === productId) {
 			result = true;
 			return result;
 		};
@@ -9,28 +11,29 @@ export const checkIsAdded = (id, basket) => {
 	return result;
 };
 
-export const getItemCount = (id, basket) => {
-	let count = 0;
-	basket.forEach(product => {
-		if (Object.keys(product).includes(id)) {
-			count = product[id];
-			return count;
+export const getItemCount = (productId, basket) => {
+	let amount = 0;
+	basket.forEach(({ id, count }) => {
+		if (id === productId) {
+			amount = count;
+			return amount;
 		};
 	});
-	return count;
+	return amount;
 };
 
 export const getBasketProductCount = basketProductList => {
 	return basketProductList.reduce((count, product) => {
-		return count += Object.values(product)[0];
+		return count += product.count;
 	}, 0);
-}
+};
 
 export const getBasketPrice = (basketProductList, catalogProducts) => {
+	if (isEmptyObj(catalogProducts)) return 0;
 	let productName;
 	return basketProductList.reduce((price, product) => {
-		productName = Object.keys(product)[0];
-		price += catalogProducts[productName].price * Object.values(product);
+		productName = product.id;
+		price += catalogProducts[productName].price * product.count;
 		return price;
 	}, 0);
 };

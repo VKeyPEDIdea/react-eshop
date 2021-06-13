@@ -17,12 +17,14 @@ const NavigationDrawer = props => {
 
 	const getNavBtns = (linksList) => {
 		return linksList.map(link => {
-			return <li key={link.name}>
-				<NavLink
-					to={link.ref}
-					className={classes.btnNav}
-					activeClassName={[classes.btnNav, classes.active].join(' ')}>{link.name}</NavLink>
-			</li>
+			if (!link.ref.includes('/product')) {
+				return <li key={link.name}>
+					<NavLink
+						to={link.ref}
+						className={classes.btnNav}
+						activeClassName={[classes.btnNav, classes.active].join(' ')}>{link.name}</NavLink>
+				</li>
+			}
 		});
 	};
 

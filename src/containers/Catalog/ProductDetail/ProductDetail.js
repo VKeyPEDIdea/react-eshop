@@ -1,40 +1,40 @@
-import React, { useRef } from 'react';
-
+import React, { useRef, useEffect } from 'react';
 import { withRouter } from 'react-router';
 import { location } from '../../../services/locationService';
 import CartButton from '../../../components/UI/CartButton/CartButton';
 import classes from './ProductDetail.module.sass';
-import { checkIsAdded, getItemCount } from '../../../orderHelpers';
 import Rating from '../../../components/UI/Rating/Rating';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	fetchProducts,
+	selectProductsLoading,
+	selectProductByName,
+} from '../ProductList/productsSlice';
+import {
+	addProductToBasket,
+	removeProductFromBasket,
+	selectCheckIsAdded,
+	selectItemCount
+} from '../../Order/basketSlice';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 const ProductDetail = props => {
-	const {
-		products,
-		basket,
-		addProduct,
-		removeProduct
-	} = props;
-
+	const dispatch = useDispatch();
 	const productName = location.getCurrentProductName(props.location.pathname);
-	const {
-		id,
-		name,
-		description,
-		price,
-		img,
-		rating,
-		brandId,
-		comments
-	} = getCurrentProduct(products, productName);
-
+	
+	const loading = useSelector(selectProductsLoading);
+	const product = useSelector(state => selectProductByName(state, productName));
+	const isAdded = useSelector(state => selectCheckIsAdded(state, product.id));
+	const count = useSelector(state => selectItemCount(state, product.id));
+	
+	useEffect(() => {
+		dispatch(fetchProducts());
+	}, [fetchProducts]);
+	
 	let bounds;
 	const imgEl = useRef(null);
 	const glowEl = useRef(null);
 	const imageEL = useRef(null);
-
-	function getCurrentProduct(productList, productTitle) {
-		return productList[productTitle];
-	}
 
 	function rotateToMouse(e) {
 		const mouseX = e.clientX;
@@ -82,47 +82,65 @@ const ProductDetail = props => {
 		imgEl.current.style.transform = '';
 	};
 
-	return (
-		<div className={classes.productDetail}>
-			<div className={classes.imgBox}>
-				<div className={classes.productImg}
-					ref={imgEl}
-					alt={name}
-					onMouseEnter={onImgMouseEnterHandler}
-					onMouseLeave={onImgMouseLeaveHandler}>
-					<div className={classes.glow}
-						ref={glowEl}
-						alt={name}>
-							<img className={classes.image} ref={imageEL} src={img} alt={name} />
-						<div className={classes.rating}>
-							<Rating rate={rating} />
+	const getContent = product => {
+		const {
+			id,
+			name,
+			description,
+			price,
+			img,
+			rating,
+			brandId,
+			comments
+		} = product;
+
+		return (
+			<>
+				<div className={classes.imgBox}>
+					<div className={classes.productImg}
+						ref={imgEl}
+						alt={name}
+						onMouseEnter={onImgMouseEnterHandler}
+						onMouseLeave={onImgMouseLeaveHandler}>
+						<div className={classes.glow}
+							ref={glowEl}
+							alt={name}>
+								<img className={classes.image} ref={imageEL} src={img} alt={name} />
+							<div className={classes.rating}>
+								<Rating rate={rating} />
+							</div>
 						</div>
 					</div>
+	
 				</div>
+				<div className={classes.contentBox}>
+					<h1 className={classes.title}>{name}</h1>
+					<p className={classes.price}>{price} ₸</p>
+					<div className={classes.buttonBox} >
+						<CartButton
+							id={name}
+							isAvailable={isAdded}
+							count={count}
+							onRemove={() => dispatch(removeProductFromBasket(id))}
+							onAdd={() => dispatch(addProductToBasket(id))}/>
+					</div>
+					<div className={classes.factoid}>
+						<p className={classes.subtitle}>Описание</p>
+						<p className={classes.description}>{description}</p>
+					</div>
+					<p className={classes.subtitle}>Производитель</p>
+					<p>{brandId}</p>
+					<p>Комментарии: {comments[0]}</p>
+				</div>
+			</>
+		);
+	}
 
-			</div>
-			<div className={classes.contentBox}>
-				<h1 className={classes.title}>{name}</h1>
-				<p className={classes.price}>{price} ₸</p>
-				<div className={classes.buttonBox} >
-					<CartButton
-						id={name}
-						isAvailable={checkIsAdded(id, basket)}
-						count={getItemCount(id, basket)}
-						onRemove={() => removeProduct(id)}
-						onAdd={() => addProduct(id)}/>
-				</div>
-				<div className={classes.factoid}>
-					<p className={classes.subtitle}>Описание</p>
-					<p className={classes.description}>{description}</p>
-				</div>
-				<p className={classes.subtitle}>Производитель</p>
-				<p>{brandId}</p>
-				<p>Комментарии: {comments[0]}</p>
-			</div>
+	return (
+		<div className={classes.productDetail}>
+			{loading ? <Spinner /> : getContent(product)}
 		</div>
 	);
 };
-
 
 export default withRouter(ProductDetail);
