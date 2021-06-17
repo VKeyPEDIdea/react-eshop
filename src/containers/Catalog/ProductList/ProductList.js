@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router';
 import classes from './ProductList.module.sass';
 import { location } from '../../../services/locationService';
 import { checkIsAdded, getItemCount } from '../../../orderHelpers';
@@ -20,9 +19,10 @@ import {
 	addProductToBasket,
 	removeProductFromBasket,
 } from '../../Order/basketSlice';
+import { useHistory } from 'react-router-dom';
 
 const ProductList = props => {
-	const {	location: routerLocation } = props;
+	const routerLocation = useHistory().location;
 
 	const [search, setSearch] = useState(null);
 	const [sort, setSort] = useState(null);
@@ -116,4 +116,4 @@ const ProductList = props => {
 	);
 };
 
-export default withRouter(ProductList);
+export default ProductList;

@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import classes from './NavigationTree.module.sass';
 import NavigationTreeNode from './NavigationTreeNode/NavigationTreeNode';
-import { withRouter } from 'react-router';
 import { location } from '../../../services/locationService';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategoriesList, fetchCategories } from './categoriesSlice';
+import { useHistory } from 'react-router-dom';
 
 const NavigationTree = props => {
 	const dispatch = useDispatch();
 	const categories = useSelector(selectCategoriesList);
+	const pathname = useHistory().location.pathname;
 	
 	useEffect(() => {
 		dispatch(fetchCategories());
@@ -19,7 +20,7 @@ const NavigationTree = props => {
 	function setTree(list) {
 		let selectedNodes = [];
 		let normalNodes = [];
-		const selected = location.getSelected(props.location.pathname);
+		const selected = location.getSelected(pathname);
 		const current = selected[selected.length - 1];
 		let parent = current ? current : '';
 		const isSelected = ({ id }) => selected.includes(id) || id === current;
@@ -30,7 +31,7 @@ const NavigationTree = props => {
 					key={node.id}
 					id={node.id}
 					title={node.name}
-					rootPath={props.location.pathname}
+					rootPath={pathname}
 					selected={isSelected(node)}
 				/>;
 			
@@ -59,4 +60,4 @@ const NavigationTree = props => {
 	);
 };
 
-export default withRouter(NavigationTree);
+export default NavigationTree;

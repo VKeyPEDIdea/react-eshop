@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import { withRouter } from 'react-router';
 import { location } from '../../../services/locationService';
 import CartButton from '../../../components/UI/CartButton/CartButton';
 import classes from './ProductDetail.module.sass';
@@ -17,10 +16,12 @@ import {
 	selectItemCount
 } from '../../Order/basketSlice';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import { useHistory } from 'react-router-dom';
 
 const ProductDetail = props => {
 	const dispatch = useDispatch();
-	const productName = location.getCurrentProductName(props.location.pathname);
+	const pathname = useHistory().location.pathname;
+	const productName = location.getCurrentProductName(pathname);
 	
 	const loading = useSelector(selectProductsLoading);
 	const product = useSelector(state => selectProductByName(state, productName));
@@ -143,4 +144,4 @@ const ProductDetail = props => {
 	);
 };
 
-export default withRouter(ProductDetail);
+export default ProductDetail;
