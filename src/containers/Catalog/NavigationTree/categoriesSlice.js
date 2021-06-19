@@ -13,7 +13,7 @@ export const categoriesSlice = createSlice({
 			state.loading = true;
 		},
 		fetchSuccess: (state, { payload }) => {
-			state.list = payload;
+			state.list = Object.values(payload);
 			state.error = false;
 			state.loading = false;
 		},

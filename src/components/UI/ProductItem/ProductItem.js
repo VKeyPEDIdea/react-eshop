@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CartButton from '../CartButton/CartButton';
+import CartButton from '../CartButton';
 import classes from './ProductItem.module.sass';
 
 const ProductItem = props => {

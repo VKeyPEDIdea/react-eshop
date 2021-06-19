@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { location } from '../../../services/locationService';
-import CartButton from '../../../components/UI/CartButton/CartButton';
+import CartButton from '../../../components/UI/CartButton';
 import classes from './ProductDetail.module.sass';
-import Rating from '../../../components/UI/Rating/Rating';
+import Rating from '../../../components/UI/Rating';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchProducts,
@@ -15,7 +15,7 @@ import {
 	selectCheckIsAdded,
 	selectItemCount
 } from '../../Order/basketSlice';
-import Spinner from '../../../components/UI/Spinner/Spinner';
+import Spinner from '../../../components/UI/Spinner';
 import { useHistory } from 'react-router-dom';
 
 const ProductDetail = props => {

@@ -68,12 +68,12 @@ export const selectBasketProductCount = ({ basket }) => {
 		return count += product.count;
 	}, 0);
 };
-export const selectBasketPrice = ({ basket, products}) => {
-	if (isEmptyObj(products.list)) return 0;
+export const selectBasketPrice = ({ basket, products }) => {
+	if (products.list.length === 0) return 0;
 	let productName;
-	return basket.list.reduce((price, product) => {
-		productName = product.id;
-		price += product.list[productName].price * product.count;
+	return basket.list.reduce((price, {id, count}) => {
+		productName = id;
+		price += products.list.find(({ id }) => id === productName).price * count;
 		return price;
 	}, 0);
 };

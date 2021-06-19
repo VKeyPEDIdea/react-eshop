@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../Button/Button';
-import Counter from '../Counter/Counter';
+import Button from '../Button';
+import Counter from '../Counter';
 
 const CartButton = props => {
 	const {

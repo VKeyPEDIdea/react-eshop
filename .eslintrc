@@ -12,7 +12,7 @@
     "prefer-destructuring": "off",
     "no-use-before-define": "off",
     "linebreak-style": "off",
-    "camelcase": "warn",
+    "camelcase": "off",
     "no-param-reassign": "off",
     "no-tabs": "off",
     "arrow-parens": "off",

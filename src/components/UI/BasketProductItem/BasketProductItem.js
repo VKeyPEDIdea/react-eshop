@@ -1,6 +1,6 @@
 import classes from './BasketProductItem.module.sass';
 import React from 'react';
-import Counter from '../Counter/Counter';
+import Counter from '../Counter';
 
 const BasketProductItem = props => {
 	const {

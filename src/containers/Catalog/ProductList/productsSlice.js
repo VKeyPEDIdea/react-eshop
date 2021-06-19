@@ -5,7 +5,7 @@ import { isContain, template } from '../../../utilities/';
 export const productsSlice = createSlice({
 	name: 'products',
 	initialState: {
-		list: {},
+		list: [],
 		error: false,
 		loading: false,
 	},
@@ -14,7 +14,7 @@ export const productsSlice = createSlice({
 			state.loading = true;
 		},
 		fetchSuccess: (state, { payload }) => {
-			state.list = payload;
+			state.list = Object.values(payload);
 			state.error = false;
 			state.loading = false;
 		},
@@ -40,7 +40,7 @@ export const fetchProducts = () => dispatch => {
 
 export const selectProductsList = ({ products }) => products.list;
 export const selectProductByName = ({ products }, productName) => {
-	return products.list[productName] || template; 
+	return products.list.find(({ id }) => id === productName) || template; 
 };
 export const selectFilteredList = ({ products }, category, query) => {
 	return Object.values(products.list).filter(({ categoryId, name, description }) => {

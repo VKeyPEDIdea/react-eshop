@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { getBasketPrice } from '../../../orderHelpers';
-import Button from '../../../components/UI/Button/Button';
-import InputSelect from '../../../components/UI/InputSelect/InputSelect';
-import InputText from '../../../components/UI/InputText/InputText';
-import InputRadioButton from '../../../components/UI/InputRadioButton/InputRadioButton';
+import Button from '../../../components/UI/Button';
+import InputSelect from '../../../components/UI/InputSelect';
+import InputText from '../../../components/UI/InputText';
+import InputRadioButton from '../../../components/UI/InputRadioButton';
 import classes from './OrderForm.module.sass';
 import { updateObject } from '../../../utilities/';
 import { useSelector } from 'react-redux';
-import { selectProductsList } from '../../Catalog/ProductList/productsSlice';
-import { selectBasketList } from '../basketSlice';
+import { selectBasketPrice } from '../basketSlice';
 
 const OrderForm = props => {
-	const products = useSelector(selectProductsList);
-	const basket = useSelector(selectBasketList);
+	const basketPrice = useSelector(selectBasketPrice)
 	const [orderIsReady, setOrderIsReady] = useState(false);	
 	const [name, setName] = useState({
 		label: 'Имя',
@@ -212,7 +209,7 @@ const OrderForm = props => {
 				validity={cashCount.isValid}
 				isTouched={cashCount.touched}/> : null}
 			<div className={classes.countSummary}>
-				<span>Итого к оплате</span><span>{getBasketPrice(basket, products)} ₸</span>
+				<span>Итого к оплате</span><span>{basketPrice} ₸</span>
 			</div>
 			<Button
 				disabled={!orderIsReady}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import classes from './NavigationTree.module.sass';
-import NavigationTreeNode from './NavigationTreeNode/NavigationTreeNode';
+import NavigationTreeNode from './NavigationTreeNode';
 import { location } from '../../../services/locationService';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategoriesList, fetchCategories } from './categoriesSlice';
@@ -24,8 +24,7 @@ const NavigationTree = props => {
 		const current = selected[selected.length - 1];
 		let parent = current ? current : '';
 		const isSelected = ({ id }) => selected.includes(id) || id === current;
-		Object.values(list)
-			.filter(({ id, parent_id }) => selected.includes(id) || parent_id === parent)
+		list.filter(({ id, parent_id }) => selected.includes(id) || parent_id === parent)
 			.forEach(node => {
 				let element = <NavigationTreeNode
 					key={node.id}

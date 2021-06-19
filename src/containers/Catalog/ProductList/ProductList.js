@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './ProductList.module.sass';
 import { location } from '../../../services/locationService';
-import { checkIsAdded, getItemCount } from '../../../orderHelpers';
-import { debounce, isContain, productsSortSelectDic } from '../../../utilities/';
-import NavigationTree from '../NavigationTree/NavigationTree';
-import Spinner from '../../../components/UI/Spinner/Spinner';
-import ProductItem from '../../../components/UI/ProductItem/ProductItem';
-import InputText from '../../../components/UI/InputText/InputText';
-import InputSelect from '../../../components/UI/InputSelect/InputSelect';
+import {
+	debounce,
+	productsSortSelectDic,
+	checkIsAdded,
+	getItemCount,
+} from '../../../utilities/';
+import NavigationTree from '../NavigationTree';
+import Spinner from '../../../components/UI/Spinner';
+import ProductItem from '../../../components/UI/ProductItem';
+import InputText from '../../../components/UI/InputText';
+import InputSelect from '../../../components/UI/InputSelect';
 import {
 	fetchProducts,
 	selectFilteredList

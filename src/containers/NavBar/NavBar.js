@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../components/UI/Logo/Logo';
+import Logo from '../../components/UI/Logo';
 import classes from './NavBar.module.sass';
 import { typicalRoutes } from '../../router';
-import CartBtn from '../../components/Navigation/CartBtn/CartBtn';
-import { getBasketPrice, getBasketProductCount } from '../../orderHelpers';
+import CartBtn from '../../components/Navigation/CartBtn';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBasketList, getBasketList, selectLoading } from '../Order/basketSlice';
-import { selectProductsList } from '../Catalog/ProductList/productsSlice';
+import {
+	getBasketList,
+	selectLoading,
+	selectBasketPrice,
+	selectBasketProductCount
+} from '../Order/basketSlice';
 
 const NavBar = props => {
 	const {	navDrawerToggleHandler } = props;
 
 	const loading = useSelector(selectLoading);
-	const basket = useSelector(selectBasketList);
-	const products = useSelector(selectProductsList);
+	const basketPrice = useSelector(selectBasketPrice);
+	const basketCount = useSelector(selectBasketProductCount);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -47,8 +50,8 @@ const NavBar = props => {
 
 				<div className={classes.actions}>
 					{ loading ? null : <CartBtn 
-						count={getBasketProductCount(basket)}
-						price={getBasketPrice(basket, products)}/>}
+						count={basketCount}
+						price={basketPrice}/>}
 					<div className={classes.profile}>
 						<i className="material-icons">account_box</i>
 					</div>
