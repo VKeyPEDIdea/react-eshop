@@ -4,14 +4,14 @@ import Counter from '../Counter';
 
 const BasketProductItem = props => {
 	const {
+		id,
+		name,
 		count,
-		title,
 		price,
 		img,
-		id,
 		addProduct,
 		removeProduct,
-	} = props;
+	} = props.data;
 
 	return(
 		<div className={classes.basketProductItem}>
@@ -19,7 +19,7 @@ const BasketProductItem = props => {
 				 src={img}
 				 alt={id}/>
 			<div className={classes.info}>
-				<h4>{title}</h4>
+				<h4>{name}</h4>
 				<div className={classes.count}>
 					<Counter
 						mode='dark'

@@ -27,16 +27,16 @@ const BasketList = props => {
 	const count = useSelector(selectBasketProductCount);
 
 	const list = productsLoading ? null : basket.map(({ id, count }) => {
-		const item = products.find(product => id === product.id);
+		const product = products.find(product => id === product.id);
 		return <BasketProductItem
-			key={id}
-			id={id}
-			img={item.img}
-			title={item.name}
-			count={count}
-			addProduct={() => dispatch(addProductToBasket(id))}
-			removeProduct={() => dispatch(removeProductFromBasket(id))}
-			price={item.price} />;
+			key={product.id}
+			data={{
+				...product,
+				count,
+				price: product.price,
+				addProduct: () => dispatch(addProductToBasket(id)),
+				removeProduct: () => dispatch(removeProductFromBasket(id))
+			}}/>;
 	});
 
 	return(

@@ -152,62 +152,41 @@ const OrderForm = props => {
 		<form>
 			<h4>Данные заказа</h4>
 			<InputText
-				label={name.label}
-				onChange={event => nameChangeHandler(event)}
-				value={name.value}
-				required={name.isRequired}
-				validity={name.isValid}
-				isTouched={name.touched}
-				id={name.id}/>
+				data={{
+					... name,
+					onChange: event => nameChangeHandler(event),
+				}}/>
 			<InputText
-				label={phone.label}
-				onChange={event => phoneChangeHandler(event)}
-				value={phone.value}
-				required={phone.isRequired}
-				validity={phone.isValid}
-				isTouched={phone.touched}
-				id={phone.id}/>
+				data={{
+					...phone,
+					onChange: event => phoneChangeHandler(event),
+				}}/>
 			<InputSelect
-				label={delivery.label}
-				onChange={event => deliveryChangeHadler(event)}
-				optionList={delivery.optionList}
-				id={delivery.id}
-				value={delivery.value} />
+				data={{
+					...delivery,
+					onChange: event => deliveryChangeHadler(event)
+				}}/>
 			{(delivery.value === 'courier') ? <InputText
-				label={address.label}
-				id={address.id}
-				value={address.id}
-				onChange={event => addressChangeHandler(event)}
-				required={address.isRequired}
-				validity={address.isValid}
-				isTouched={address.touched}/> : null}
+				data={{
+					...address,
+					onChange: event => addressChangeHandler(event)
+				}}/> : null}
 			<h4>Оплата</h4>
 			<InputRadioButton
-				label={cash.label}
-				id={cash.id}
-				name={cash.name}
-				onChange={event => cashChangeHandler(event)}
-				value={cash.value}
-				validity={cash.isValid}
-				required={cash.isRequired}
-				isTouched={cash.touched} />
+				data={{
+					...cash,
+					onChange: event => cashChangeHandler(event),
+				}}/>
 			<InputRadioButton
-				label={terminal.label}
-				onChange={event => terminalChangeHandler(event)}
-				id={terminal.id}
-				name={terminal.name}
-				value={terminal.value}
-				validity={terminal.isValid}
-				required={terminal.isRequired}
-				isTouched={terminal.touched} />
+				data={{
+					...terminal,
+					onChange: event => terminalChangeHandler(event),
+				}}/>
 			{cash.checked ? <InputText
-				label={cashCount.label}
-				id={cashCount.id}
-				value={cashCount.id}
-				onChange={event => cashCountChangeHandler(event)}
-				required={cashCount.isRequired}
-				validity={cashCount.isValid}
-				isTouched={cashCount.touched}/> : null}
+				data={{
+					...cashCount,
+					onChange: event => cashCountChangeHandler(event)
+				}}/> : null}
 			<div className={classes.countSummary}>
 				<span>Итого к оплате</span><span>{basketPrice} ₸</span>
 			</div>

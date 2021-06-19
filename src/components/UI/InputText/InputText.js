@@ -3,17 +3,18 @@ import classes from './InputText.module.sass';
 
 const InputText = props => {
 	const {
-		label,
 		id,
+		label,
+		value,
 		onChange,
-		required,
-		validity,
-		isTouched
-	} = props;
+		isRequired,
+		isValid,
+		touched,
+	} = props.data;
 
 	const inputStyles = [classes.inputText];
 
-	if (!validity && required && isTouched) {
+	if (!isValid && isRequired && touched) {
 		inputStyles.push(classes.invalid);
 	}
 
@@ -21,10 +22,11 @@ const InputText = props => {
 		<div className={inputStyles.join(' ')}>
 			<input
 				onChange={onChange}
-				required={required}
+				required={isRequired}
 				type="text"
 				name={id}
 				id={id}
+				value={value}
 				className={classes.field}/>
 			<label
 				htmlFor={id}

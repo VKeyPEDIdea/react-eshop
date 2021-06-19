@@ -3,14 +3,15 @@ import classes from './InputSelect.module.sass';
 
 const InputSelect= props => {
 	const {
+		id,
 		label,
+		value,
 		optionList,
 		onChange,
-		id
-	} = props;
+	} = props.data;
 
 	const [isOpened, setIsOpened] = useState(false);
-	const [selectValue, setSelectValue] = useState('');
+	const [selectValue, setSelectValue] = useState(value);
 	const [content, setContent] = useState('Не выбрано');
 
 	const optionClickHandler = (content, value) => {

@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './ProductList.module.sass';
-import { location } from '../../../services/locationService';
 import {
 	debounce,
 	productsSortSelectDic,
-	checkIsAdded,
-	getItemCount,
 } from '../../../utilities/';
 import NavigationTree from '../NavigationTree';
 import Spinner from '../../../components/UI/Spinner';
@@ -18,29 +15,24 @@ import {
 	selectFilteredList
 } from './productsSlice';
 import {
-	selectBasketList,
 	selectLoading,
 	addProductToBasket,
 	removeProductFromBasket,
 } from '../../Order/basketSlice';
-import { useHistory } from 'react-router-dom';
 
 const ProductList = props => {
-	const routerLocation = useHistory().location;
 
 	const [search, setSearch] = useState(null);
 	const [sort, setSort] = useState(null);
 
 	const loading = useSelector(selectLoading);
-	const basket = useSelector(selectBasketList);
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
 		dispatch(fetchProducts());
 	}, [fetchProducts]);
 	
-	const selectedCategory = location.getCurrentCategory(routerLocation.pathname) || '';
-	const products = useSelector(state => selectFilteredList(state, selectedCategory, search));
+	const products = useSelector(state => selectFilteredList(state, search));
 	
 	const list = products
 		.sort((a, b) => {
@@ -58,16 +50,11 @@ const ProductList = props => {
 		.map(product => {
 			return <ProductItem
 				key={product.id}
-				id={product.id}
-				title={product.name}
-				about={product.description}
-				price={product.price}
-				path={product.id}
-				imgPath={product.img}
-				isAdded={checkIsAdded(product.id, basket)}
-				count={getItemCount(product.id, basket)}
-				addProductHandler={() => dispatch(addProductToBasket(product.id))}
-				removeProductHandler={() => dispatch(removeProductFromBasket(product.id))}/>
+				data={{
+					 ...product,
+					 addProductHandler: () => dispatch(addProductToBasket(product.id)),
+					 removeProductHandler: () => dispatch(removeProductFromBasket(product.id)),
+				}}/>
 	});
 	
 	const onSearchChange = debounce(event => {
@@ -89,15 +76,18 @@ const ProductList = props => {
 				<div className={classes.sorter}>
 					<div className={classes.search}>
 						<InputText
-							label='Поиск'
-							id='search'
-							onChange={(event) => onSearchChange(event)}
-							/>
+							data={{
+								label: 'Поиск',
+								id: 'search',
+								onChange: event => onSearchChange(event),
+							}}/>
 					</div>
 					<InputSelect
-						label='Сортировать по'
-						onChange={event => onSortChange(event)}
-						optionList={productsSortSelectDic}/>
+						data={{
+							label: 'Сортировать по',
+							onChange: event => onSortChange(event),
+							optionList: productsSortSelectDic
+						}}/>
 				</div>
 				<div className={classes.productList}>
 					{loading ? <Spinner /> : list}

@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 import { api } from '../../../services/apiServies';
+import { location } from '../../../services/locationService';
 import { isContain, template } from '../../../utilities/';
  
 export const productsSlice = createSlice({
@@ -42,9 +44,11 @@ export const selectProductsList = ({ products }) => products.list;
 export const selectProductByName = ({ products }, productName) => {
 	return products.list.find(({ id }) => id === productName) || template; 
 };
-export const selectFilteredList = ({ products }, category, query) => {
-	return Object.values(products.list).filter(({ categoryId, name, description }) => {
-		const isSelected = category ? categoryId === category : true;
+export const selectFilteredList = ({ products }, query) => {
+	const { pathname } = useHistory().location;
+	const selectedCategory = location.getCurrentCategory(pathname) || '';
+	return products.list.filter(({ categoryId, name, description }) => {
+		const isSelected = selectedCategory ? categoryId === category : true;
 		const isSearched = query ? isContain(query, [name, description]) : true;
 		return isSelected && isSearched;
 	})
