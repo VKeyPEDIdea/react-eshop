@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { getBasketPrice } from '../../../orderHelpers';
-import Button from '../../../components/UI/Button/Button';
-import InputSelect from '../../../components/UI/InputSelect/InputSelect';
-import InputText from '../../../components/UI/InputText/InputText';
-import InputRadioButton from '../../../components/UI/InputRadioButton/InputRadioButton';
+import Button from '../../../components/UI/Button';
+import InputSelect from '../../../components/UI/InputSelect';
+import InputText from '../../../components/UI/InputText';
+import InputRadioButton from '../../../components/UI/InputRadioButton';
 import classes from './OrderForm.module.sass';
 import { updateObject } from '../../../utilities/';
 import { useSelector } from 'react-redux';
-import { selectProductsList } from '../../Catalog/ProductList/productsSlice';
-import { selectBasketList } from '../basketSlice';
+import { selectBasketPrice } from '../basketSlice';
 
 const OrderForm = props => {
-	const products = useSelector(selectProductsList);
-	const basket = useSelector(selectBasketList);
+	const basketPrice = useSelector(selectBasketPrice)
 	const [orderIsReady, setOrderIsReady] = useState(false);	
 	const [name, setName] = useState({
 		label: 'Имя',
@@ -155,64 +152,43 @@ const OrderForm = props => {
 		<form>
 			<h4>Данные заказа</h4>
 			<InputText
-				label={name.label}
-				onChange={event => nameChangeHandler(event)}
-				value={name.value}
-				required={name.isRequired}
-				validity={name.isValid}
-				isTouched={name.touched}
-				id={name.id}/>
+				data={{
+					... name,
+					onChange: event => nameChangeHandler(event),
+				}}/>
 			<InputText
-				label={phone.label}
-				onChange={event => phoneChangeHandler(event)}
-				value={phone.value}
-				required={phone.isRequired}
-				validity={phone.isValid}
-				isTouched={phone.touched}
-				id={phone.id}/>
+				data={{
+					...phone,
+					onChange: event => phoneChangeHandler(event),
+				}}/>
 			<InputSelect
-				label={delivery.label}
-				onChange={event => deliveryChangeHadler(event)}
-				optionList={delivery.optionList}
-				id={delivery.id}
-				value={delivery.value} />
+				data={{
+					...delivery,
+					onChange: event => deliveryChangeHadler(event)
+				}}/>
 			{(delivery.value === 'courier') ? <InputText
-				label={address.label}
-				id={address.id}
-				value={address.id}
-				onChange={event => addressChangeHandler(event)}
-				required={address.isRequired}
-				validity={address.isValid}
-				isTouched={address.touched}/> : null}
+				data={{
+					...address,
+					onChange: event => addressChangeHandler(event)
+				}}/> : null}
 			<h4>Оплата</h4>
 			<InputRadioButton
-				label={cash.label}
-				id={cash.id}
-				name={cash.name}
-				onChange={event => cashChangeHandler(event)}
-				value={cash.value}
-				validity={cash.isValid}
-				required={cash.isRequired}
-				isTouched={cash.touched} />
+				data={{
+					...cash,
+					onChange: event => cashChangeHandler(event),
+				}}/>
 			<InputRadioButton
-				label={terminal.label}
-				onChange={event => terminalChangeHandler(event)}
-				id={terminal.id}
-				name={terminal.name}
-				value={terminal.value}
-				validity={terminal.isValid}
-				required={terminal.isRequired}
-				isTouched={terminal.touched} />
+				data={{
+					...terminal,
+					onChange: event => terminalChangeHandler(event),
+				}}/>
 			{cash.checked ? <InputText
-				label={cashCount.label}
-				id={cashCount.id}
-				value={cashCount.id}
-				onChange={event => cashCountChangeHandler(event)}
-				required={cashCount.isRequired}
-				validity={cashCount.isValid}
-				isTouched={cashCount.touched}/> : null}
+				data={{
+					...cashCount,
+					onChange: event => cashCountChangeHandler(event)
+				}}/> : null}
 			<div className={classes.countSummary}>
-				<span>Итого к оплате</span><span>{getBasketPrice(basket, products)} ₸</span>
+				<span>Итого к оплате</span><span>{basketPrice} ₸</span>
 			</div>
 			<Button
 				disabled={!orderIsReady}

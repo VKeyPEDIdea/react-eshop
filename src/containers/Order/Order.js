@@ -1,14 +1,12 @@
 import React from 'react';
 import classes from './Order.module.sass';
-import { getBasketProductCount } from '../../orderHelpers';
-import OrderForm from './OrderForm/OrderForm';
+import OrderForm from './OrderForm/';
 import BasketList from './BasketList/';
-import { selectBasketList } from './basketSlice'
 import { useSelector } from 'react-redux';
+import { selectBasketProductCount } from './basketSlice';
 
 const Order = props => {
-	const basket = useSelector(selectBasketList)
-	const count = getBasketProductCount(basket);
+	const count = useSelector(selectBasketProductCount);
 
 	return(
 		<div className={classes.container}>

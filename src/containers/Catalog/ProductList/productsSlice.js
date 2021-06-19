@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 import { api } from '../../../services/apiServies';
-import { template } from '../../../utilities/';
+import { location } from '../../../services/locationService';
+import { isContain, template } from '../../../utilities/';
  
 export const productsSlice = createSlice({
 	name: 'products',
 	initialState: {
-		list: {},
+		list: [],
 		error: false,
 		loading: false,
 	},
@@ -14,7 +16,7 @@ export const productsSlice = createSlice({
 			state.loading = true;
 		},
 		fetchSuccess: (state, { payload }) => {
-			state.list = payload;
+			state.list = Object.values(payload);
 			state.error = false;
 			state.loading = false;
 		},
@@ -40,7 +42,16 @@ export const fetchProducts = () => dispatch => {
 
 export const selectProductsList = ({ products }) => products.list;
 export const selectProductByName = ({ products }, productName) => {
-	return products.list[productName] || template; 
+	return products.list.find(({ id }) => id === productName) || template; 
+};
+export const selectFilteredList = ({ products }, query) => {
+	const { pathname } = useHistory().location;
+	const selectedCategory = location.getCurrentCategory(pathname) || '';
+	return products.list.filter(({ categoryId, name, description }) => {
+		const isSelected = selectedCategory ? categoryId === category : true;
+		const isSearched = query ? isContain(query, [name, description]) : true;
+		return isSelected && isSearched;
+	})
 };
 export const selectProductsLoading = ({ products }) => products.loading;
 

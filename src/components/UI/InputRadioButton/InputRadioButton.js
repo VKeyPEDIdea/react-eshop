@@ -3,13 +3,16 @@ import classes from './InputRadioButton.module.sass';
 
 const InputRadioButton = props => {
 	const {
-		label,
 		id,
+		label,
 		name,
 		value,
 		onChange,
+		isValid,
+		isRequired,
+		isTouched,
 		checked
-	} = props;
+	} = props.data;
 
 	return(
 		<>

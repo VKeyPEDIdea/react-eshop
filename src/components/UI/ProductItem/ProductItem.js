@@ -1,21 +1,22 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import CartButton from '../CartButton/CartButton';
+import { selectCheckIsAdded, selectItemCount } from '../../../containers/Order/basketSlice';
+import CartButton from '../CartButton';
 import classes from './ProductItem.module.sass';
 
 const ProductItem = props => {
 	const {
-		removeProductHandler,
-		addProductHandler,
 		id,
-		imgPath,
-		title,
-		about,
-		count,
+		img,
+		name,
+		description,
 		price,
-		isAdded,
-		path
-	} = props;
+		addProductHandler,
+		removeProductHandler
+	} = props.data;
+	const isAdded = useSelector(state => selectCheckIsAdded(state, id));
+	const count = useSelector(state => selectItemCount(state, id));
 
 	function getImgWrapStyles() {
 		let imgStyles = [classes.img, classes['img-responsive']];
@@ -33,7 +34,7 @@ const ProductItem = props => {
 		<div className={classes.productItem}>
 			<div className={classes.imgWrap}>
 				<img
-					src={imgPath}
+					src={img}
 					alt="alt"
 					className={getImgWrapStyles()}/>
 				<div className={getCartBtnWrapStyles()}>
@@ -46,8 +47,8 @@ const ProductItem = props => {
 					/>
 				</div>
 			</div>
-			<Link to={'/catalog/product/' + path} className={classes.title}>{title}</Link>
-			<p className={classes.description}>{about}</p>
+			<Link to={'/catalog/product/' + id} className={classes.title}>{name}</Link>
+			<p className={classes.description}>{description}</p>
 			<p className={classes.price}>
 				<span data-id={id}>{price}</span>
 				<span>₸</span>
