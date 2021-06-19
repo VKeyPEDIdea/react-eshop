@@ -20,8 +20,8 @@ import { useHistory } from 'react-router-dom';
 
 const ProductDetail = props => {
 	const dispatch = useDispatch();
-	const pathname = useHistory().location.pathname;
-	const productName = location.getCurrentProductName(pathname);
+	const { pathname } = useHistory().location;
+	const productName = location.getCurrentDirectoryLevel(pathname);
 	
 	const loading = useSelector(selectProductsLoading);
 	const product = useSelector(state => selectProductByName(state, productName));

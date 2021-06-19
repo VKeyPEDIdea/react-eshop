@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { api } from '../../../services/apiServies';
-import { template } from '../../../utilities/';
+import { isContain, template } from '../../../utilities/';
  
 export const productsSlice = createSlice({
 	name: 'products',
@@ -41,6 +41,13 @@ export const fetchProducts = () => dispatch => {
 export const selectProductsList = ({ products }) => products.list;
 export const selectProductByName = ({ products }, productName) => {
 	return products.list[productName] || template; 
+};
+export const selectFilteredList = ({ products }, category, query) => {
+	return Object.values(products.list).filter(({ categoryId, name, description }) => {
+		const isSelected = category ? categoryId === category : true;
+		const isSearched = query ? isContain(query, [name, description]) : true;
+		return isSelected && isSearched;
+	})
 };
 export const selectProductsLoading = ({ products }) => products.loading;
 

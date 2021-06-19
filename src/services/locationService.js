@@ -23,7 +23,7 @@ class Location {
 		return this.getSelected(location).pop() || '';
 	}
 
-	getCurrentProductName(location) {
+	getCurrentDirectoryLevel(location) {
 		return location.slice(1)
 			.split('/')
 			.pop() || '';
