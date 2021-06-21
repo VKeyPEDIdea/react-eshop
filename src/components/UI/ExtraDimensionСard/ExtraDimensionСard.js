@@ -2,6 +2,10 @@ import React, { useRef } from 'react';
 import classes from './ExtraDimensionСard.module.sass';
 
 const ExtraDimensionСard = props => {
+	const {
+		scale = 1.1,
+		angle = 2,	
+	} = props;
 	let bounds;
 	const card = useRef(null);
 	const glow = useRef(null);
@@ -23,12 +27,12 @@ const ExtraDimensionСard = props => {
 		`;
 		
 		card.current.style.transform = `
-			scale3d(1.1, 1.1, 1.1)
+			scale3d(${scale}, ${scale}, ${scale})
 			rotate3d(
 				${center.y / 100},
 				${-center.x / 100},
 				0,
-				${Math.log(distance)* 2}deg
+				${Math.log(distance)* angle}deg
 			)
 		`;
 		
