@@ -48,7 +48,7 @@ export const selectFilteredList = ({ products }, query) => {
 	const { pathname } = useHistory().location;
 	const selectedCategory = location.getCurrentCategory(pathname) || '';
 	return products.list.filter(({ categoryId, name, description }) => {
-		const isSelected = selectedCategory ? categoryId === category : true;
+		const isSelected = selectedCategory ? (categoryId === selectedCategory) : true;
 		const isSearched = query ? isContain(query, [name, description]) : true;
 		return isSelected && isSearched;
 	})
