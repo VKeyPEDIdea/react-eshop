@@ -1,0 +1,39 @@
+@import "../../../../sass/utils/_vars";
+
+.navigationTreeNode {
+    display: flex;
+    color: $alt-on-body;
+    padding: 8px 8px 8px 12px;
+    border-radius: 4px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: $st-trans;
+
+    i {
+        color: $dark-hover;
+    }
+
+    &:hover {
+        background-color: $dark;
+        color: $on-body;
+    }
+
+    &.selected {
+        color: $primary;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        background-color: rgba($primary, .2);
+        padding: 8px 12px 8px 8px;
+
+        i {
+            margin-right: 8px;
+            color: rgba($primary, .5);
+            transform: rotate(180deg);
+        }
+
+        &:hover {
+            background-color: rgba($primary, .3);
+        }
+    }
+}
