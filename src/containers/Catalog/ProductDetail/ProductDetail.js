@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { location } from '../../../services/locationService';
 import CartButton from '../../../components/UI/CartButton';
-import classes from './ProductDetail.module.sass';
+import classes from './ProductDetail.module.scss';
 import Rating from '../../../components/UI/Rating';
 import { useDispatch, useSelector } from 'react-redux';
 import {
