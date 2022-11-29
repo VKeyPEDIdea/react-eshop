@@ -1,0 +1,76 @@
+@import '../../../sass/utils/_vars';
+
+.inputCheckbox {
+	position: relative;
+	font-family: $primary-font;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 500;
+	padding-left: 32px;
+	display: block;
+	margin: 16px 0;
+	color: $alt-on-body;
+	transition: $st-trans;
+	cursor: pointer;
+	
+	&:hover {
+		color: $on-body;
+
+		.field {
+            &:disabled + .box {
+                background-color: $body-hover
+            }
+    
+            .box {
+                background-color: rgba($primary, .1);
+            }
+        }
+					
+    }
+}
+
+.field {
+	appearance: none;
+	position: absolute;
+
+	&:checked + .box {
+		.surface {
+			opacity: 1
+        }
+    }
+
+	&:focus + .box {
+		border: 2px solid rgba($primary, .2);
+    }
+
+	&:disabled + .box {
+		cursor: not-allowed;
+		background-color: $body-hover;
+
+		.surface {
+			background-color: $dark-hover;
+        }
+    }
+}
+
+.box {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 2px solid $dark;
+	background: $dark;
+	border-radius: 4px;
+	top: -2px;
+	left: 0px;
+}
+
+.surface {
+	opacity: 0;
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	background-color: $primary;
+	border-radius: 2px;
+	top: 4px;
+	left: 4px;
+}

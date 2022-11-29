@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './InputCheckbox.module.sass';
+import classes from './InputCheckbox.module.scss';
 
 const InputCheckbox = props => {
 	const { label, onChange } = props;
