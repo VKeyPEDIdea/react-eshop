@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import classes from './InputSelect.module.sass';
+import classes from './InputSelect.module.scss';
 
 const InputSelect= props => {
 	const {
