@@ -1,4 +1,4 @@
-import classes from './Layout.module.sass';
+import classes from './Layout.module.scss';
 import React, { useState } from 'react';
 import NavBar from '../../containers/NavBar';
 import NavigationDrawer from '../../components/Navigation/NavigationDrawer';
