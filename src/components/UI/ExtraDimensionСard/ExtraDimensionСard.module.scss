@@ -1,0 +1,51 @@
+@import '../../../sass/utils/_vars';
+
+.box {
+	width: 100%;
+	height: 100%;
+	perspective: 450px;
+}
+
+.card {
+	box-shadow: 0 1px 5px #00000009;
+	z-index: 1;
+	background-size: cover;
+	width: 100%;
+	border: 2px solid $dark-light;
+	border-radius: 8px;
+	position: relative;
+	transition-duration: 300ms;
+	transition-property: transform, box-shadow;
+	transition-timing-function: ease-out;
+	transform: rotate3d(0, 0, 0, 0);
+
+	&:hover {
+		transition-duration: 150ms;
+		box-shadow: 0 5px 20px 5px #00000056;
+    }
+}
+
+.glow {
+	z-index: 2;
+	background-image: radial-gradient(circle at 50% -20%, #ffffff11, #0000000f);
+	border-radius: 8px;
+	width: 100%;
+	height: 100%;
+	left: 2px;
+	top: 2px;	
+	pointer-events: none;
+}
+
+.content {
+	background-size: cover;
+	height: 100%;
+}
+
+@media ( max-width: 576px ) {
+	.box {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 20px;
+		position: relative;
+    }
+}
