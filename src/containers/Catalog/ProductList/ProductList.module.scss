@@ -1,0 +1,53 @@
+@import '../../../sass/utils/_grid';
+
+.productList {
+    padding: 0 8px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: $grid-gap-width;
+    grid-row-gap: $grid-gap-width;
+}
+
+.categories {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 76px;
+    margin-bottom: 16px;
+}
+
+.catalogList {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: $grid-gap-width;
+}
+
+.sorter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 0 8px;
+}
+
+.search {
+    flex-grow: 1;
+    margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+    .productList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .catalogList {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .catalogList {
+        display: block;
+    }
+}
+
+;
