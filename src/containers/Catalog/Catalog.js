@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductList from './ProductList';
-import classes from './Catalog.module.sass';
+import classes from './Catalog.module.scss';
 
 const Catalog = props => {
 
