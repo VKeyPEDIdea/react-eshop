@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Button.module.sass';
+import classes from './Button.module.scss';
 const styles = [classes.button, classes.buttonCart].join(' ');
 
 const Button = props => {
