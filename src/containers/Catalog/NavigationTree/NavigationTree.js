@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import classes from './NavigationTree.module.sass';
+import classes from './NavigationTree.module.scss';
 import NavigationTreeNode from './NavigationTreeNode';
 import { location } from '../../../services/locationService';
 import { useDispatch, useSelector } from 'react-redux';
