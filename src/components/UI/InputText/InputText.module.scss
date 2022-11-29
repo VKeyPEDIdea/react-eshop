@@ -1,0 +1,59 @@
+@import '../../../sass/utils/_vars';
+
+.inputText {
+    transition: $st-trans;
+    position: relative;
+
+    &:hover {
+        .label {
+            color: $on-body;
+        }
+
+        .field {
+            border: 1px solid $dark-hover;
+        }
+    }
+}
+
+.label {
+    position: absolute;
+    display: block;
+    transition: $st-trans;
+    font-size: 14px;
+    top: 18px;
+    left: 12px;
+    color: $alt-on-body;
+    pointer-events: none;
+}
+
+.field {
+    display: block;
+    box-sizing: border-box;
+    transition: $st-trans;
+    background: $dark;
+    border: 1px solid $dark;
+    border-radius: 4px;
+    line-height: 18px;
+    font-size: 14px;
+    color: $alt-on-body;
+    padding: 26px 12px 9px;
+    margin-bottom: 8px;
+    width: 100%;
+
+    &:focus {
+        border: 1px solid $primary;
+    }
+
+    &:focus+.label,
+    &[data-enpassusermodified]+.label {
+        color: $on-body;
+        font-size: 12px;
+        top: 8px;
+    }
+}
+
+.invalid {
+    .field {
+        border: 1px solid $red;
+    }
+}
