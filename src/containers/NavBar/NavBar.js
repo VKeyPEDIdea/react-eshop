@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../components/UI/Logo';
-import classes from './NavBar.module.sass';
+import classes from './NavBar.module.scss';
 import { typicalRoutes } from '../../router';
 import CartBtn from '../../components/Navigation/CartBtn';
 import { useDispatch, useSelector } from 'react-redux';

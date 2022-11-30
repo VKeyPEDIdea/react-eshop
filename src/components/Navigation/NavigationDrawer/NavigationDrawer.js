@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './NavigationDrawer.module.sass';
+import classes from './NavigationDrawer.module.scss';
 import Logo from '../../UI/Logo/Logo';
 import { NavLink } from 'react-router-dom';
 import { singularRoutes, typicalRoutes } from '../../../router';

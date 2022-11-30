@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Counter.module.sass';
+import classes from './Counter.module.scss';
 
 const Counter = props => {
 	const {

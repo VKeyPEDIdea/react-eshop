@@ -1,0 +1,46 @@
+@import "vars";
+
+/*==========  Desktop First  ==========*/
+
+// // ≥1200px
+// @media (max-width: 1200px)
+
+// // ≥992px
+// @media (max-width: 992px)
+// //
+
+// ≥800px
+@media (max-width: 800px) {
+    .nav-header-desktop {
+        display: none;
+    }
+
+    .header-navigation {
+        padding: 8px 8px 8px 16px;
+
+        .header-func-box {
+            display: none;
+        }
+
+        // ≥576px
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-section {
+        .footer-links {
+            text-align: center;
+            padding: 40px 10px;
+
+            &__link {
+                margin-bottom: 10px;
+            }
+
+            &__column {
+                margin-bottom: 40px;
+            }
+        }
+    }
+}
+
+;

@@ -1,4 +1,4 @@
-import classes from './BasketProductItem.module.sass';
+import classes from './BasketProductItem.module.scss';
 import React from 'react';
 import Counter from '../Counter';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import classes from './CartBtn.module.sass';
+import classes from './CartBtn.module.scss';
 
 const cartBtn = props => {
 	const {	count, price } = props;

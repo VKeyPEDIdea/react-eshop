@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Rating.module.sass';
+import classes from './Rating.module.scss';
 
 const Rating = props => {
 	const { rate } = props;

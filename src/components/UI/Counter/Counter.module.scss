@@ -1,0 +1,84 @@
+@import '../../../scss/utils/_vars';
+
+.counter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	width: 168px;
+	max-width: 168px;
+	box-sizing: border-box;
+	line-height: 24px;
+	font-size: 15px;
+	border-radius: 4px;
+	transition: $st-trans;
+	white-space: nowrap;
+	border-radius: 20px;
+	background: linear-gradient(0deg, $primary, $primary-light);
+	box-shadow: 0px 3px 12px 0px rgba($primary-light, 0.35);
+	color: $primary-dark;
+	text-transform: uppercase;
+	font-weight: 600;
+	border: 2px solid $primary;
+	position: relative;
+
+	&:hover {
+		background: linear-gradient(0deg, $primary, $primary-hover);
+    }
+
+	&:focus {
+		background: linear-gradient(0deg, $primary, $primary-hover);
+    }
+
+	&::before {
+		transition: $st-trans;
+		content: "";
+		width: 90%;
+		position: absolute;
+		height: 20px;
+		border-radius: 10px;
+		background: linear-gradient(0deg, rgba($white, 0), rgba($white, .70));
+		transform: translate(-50%, -50%);
+		bottom: 5px;
+		left: 50%;
+		pointer-events: none;
+    }
+	
+	&Dark {
+		background: linear-gradient(0deg, $dark, $body);
+		box-shadow: none;
+		border: 2px solid $body;
+		color: $alt-on-body;
+
+		&::before {
+			background: linear-gradient(0deg, rgba($white, 0), rgba($grey, 0.7));
+        }
+		
+		&:hover {
+			background: linear-gradient(0deg, $dark, $body-hover);
+        }
+    }
+}
+
+.count {
+	margin: 0 16px;
+	min-width: 24px;
+}
+
+.btn {
+	cursor: pointer;
+	font-size: 24px;
+	height: 24px;
+	padding: 6px;
+	border-radius: 6px;
+
+	&:hover {
+		background-color: $primary-hover;
+    }
+
+	&Dark {
+		&:hover {
+			background-color: darken($dark, 7%);
+        }
+    }
+}

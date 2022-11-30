@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './InputRadioButton.module.sass';
+import classes from './InputRadioButton.module.scss';
 
 const InputRadioButton = props => {
 	const {
