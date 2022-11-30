@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Order.module.sass';
+import classes from './Order.module.scss';
 import OrderForm from './OrderForm/';
 import BasketList from './BasketList/';
 import { useSelector } from 'react-redux';
