@@ -3,7 +3,7 @@ import Button from '../../../components/UI/Button';
 import InputSelect from '../../../components/UI/InputSelect';
 import InputText from '../../../components/UI/InputText';
 import InputRadioButton from '../../../components/UI/InputRadioButton';
-import classes from './OrderForm.module.sass';
+import classes from './OrderForm.module.scss';
 import { updateObject } from '../../../utilities/';
 import { useSelector } from 'react-redux';
 import { selectBasketPrice } from '../basketSlice';
