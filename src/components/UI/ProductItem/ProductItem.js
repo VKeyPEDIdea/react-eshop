@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectCheckIsAdded, selectItemCount } from '../../../containers/Order/basketSlice';
 import CartButton from '../CartButton';
-import classes from './ProductItem.module.sass';
+import classes from './ProductItem.module.scss';
 
 const ProductItem = props => {
 	const {

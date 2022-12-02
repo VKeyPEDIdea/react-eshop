@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import classes from './ExtraDimensionСard.module.sass';
+import classes from './ExtraDimensionСard.module.scss';
 
 const ExtraDimensionСard = props => {
 	const {

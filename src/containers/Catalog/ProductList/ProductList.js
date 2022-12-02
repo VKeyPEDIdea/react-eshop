@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './ProductList.module.sass';
+import classes from './ProductList.module.scss';
 import {
 	debounce,
 	productsSortSelectDic,

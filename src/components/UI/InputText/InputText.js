@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './InputText.module.sass';
+import classes from './InputText.module.scss';
 
 const InputText = props => {
 	const {
