@@ -35,6 +35,8 @@
 	box-sizing: border-box;
 	border: 2px solid $body-hover;
 	width: 128px;
+	min-width: 128px;
+    height: 128px;
 	margin-right: 12px;
 }
 
@@ -48,6 +50,7 @@
 @media ( max-width: 768px ) {
 	.img {
 		width: 96px;
+        height: 96px;
     }
 	
 	.price {
